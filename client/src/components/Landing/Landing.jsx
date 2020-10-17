@@ -7,7 +7,7 @@ class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
+      user: null,
     };
 
     this.authListener = this.authListener.bind(this);
