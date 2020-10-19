@@ -1,6 +1,6 @@
 import React from "react";
 import fire from "../../config/fire";
-import Trax from "../../assets/images/traxLogo.png";
+// import Trax from "../../assets/images/traxLogo.png";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -47,8 +47,8 @@ class Login extends React.Component {
     return (
       <>
         <div className="login-form">
-          <h2 className="login-form__heading">TRAX</h2>
           <form className="login-form__form">
+            <h2 className="login-form__heading">TRAX</h2>
             <div className="login-form__email-container">
               <label className="login-form__label">Email Address</label>
               <input

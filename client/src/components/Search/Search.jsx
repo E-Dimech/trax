@@ -29,6 +29,7 @@ class Search extends React.Component {
       })
       .then((res) => {
         // console.log(res.data)
+        // Change hits to match coaster data
         const resultsNotFoundMsg = !res.data.hits.length
           ? "Where are all the coasters?"
           : "";
