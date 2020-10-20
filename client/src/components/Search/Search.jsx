@@ -11,27 +11,28 @@ class Search extends React.Component {
       results: {},
       message: "",
     };
-    this.cancel = "";
+    // this.cancel = "";
   }
 
-  fetchSearchResults = (updatedPageNo = "", query) => {
+  fetchSearchResults = (/*updatedPageNo = "",*/ _query) => {
     // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : "";
     // const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
-    const testUrl = "http://localhost:8080/search";
-    if (this.cancel) {
-      this.cancel.cancel(); // Cancel the previous request before making a new request
-    }
-    this.cancel = axios.CancelToken.source(); // Create a new CancelToken
+    const testUrl = "http://localhost:8080/search"; /* + query*/
+    // if (this.cancel) {
+    //   this.cancel.cancel(); // Cancel the previous request before making a new request
+    // }
+    // this.cancel = axios.CancelToken.source(); // Create a new CancelToken
 
     axios
       .get(
         testUrl,
         {
           params: { query: this.state.query },
-        },
-        {
-          cancelToken: this.cancel.token,
         }
+        // ,
+        // {
+        //   cancelToken: this.cancel.token,
+        // }
       )
       .then((res) => {
         console.log(res);
@@ -74,15 +75,12 @@ class Search extends React.Component {
         <div className="results-container">
           {results.map((results) => {
             console.log(results);
+
             return (
               //   Make this the park name, onclick user will see coasters
-              <a
-                key={results.id}
-                href={results.previewURL}
-                className="result-item"
-              >
+              <a key={results.id} href={results.image} className="result-item">
                 {/* CONFIGURE THIS SECTION TO MATCH COASTER DATA */}
-                {/* <h6 className="image-username">{results.user}</h6> */}
+                {/* <h6 className="image-username">{results.name}</h6> */}
                 <div className="image-wrapper">
                   <img
                     src={results.previewURL}

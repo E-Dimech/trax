@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/search", function (req, res) {
-  console.log(req);
+  // console.log(req);
   axios
     .get("https://captaincoaster.com/api/coasters", {
       headers: {
@@ -20,11 +20,29 @@ app.get("/search", function (req, res) {
         "X-Auth-Token": "406e0870-3010-449c-bfd1-5e46460f0d4c",
       },
     })
-    .then((search) => {
-      console.log(search.data);
-      res.send(search.data);
+    // .then((search) => {
+    .then((coasters) => {
+      const createArray = Object.values(coasters.data["hydra:member"]);
+
+      console.log(createArray[0].name.toLowerCase());
+      console.log(req.query.query.toLowerCase());
+
+      // console.log(Object.keys(coasters.data["hydra:member"][0]));
+      // console.log(typeof coasters.data["hydra:member"][0]);
+
+      const findCoaster = createArray.filter((coasterObject) => {
+        return (
+          coasterObject.name.toLowerCase() === req.query.query.toLowerCase()
+        );
+      });
+      //map to create individual array to pass to client side.
+      res.send({
+        name: findCoaster[0].name,
+        park: findCoaster[0].park.name,
+      });
+      // console.log(findCoaster);
     })
-    .catch((err) => res.send(err));
+    .catch((err) => console.log(err)); /*res.send(err));*/
 });
 // console.log();
 // app.get("/api/parks", function (req, res) {
@@ -36,3 +54,13 @@ app.get("/search", function (req, res) {
 // });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// [
+//   '@context',
+//   '@id',
+//   '@type',
+//   'hydra:member',
+//   'hydra:totalItems',
+//   'hydra:view',
+//   'hydra:search'
+// ]
