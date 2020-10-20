@@ -15,27 +15,34 @@ class Search extends React.Component {
   }
 
   fetchSearchResults = (updatedPageNo = "", query) => {
-    const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : "";
-    const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
-
+    // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : "";
+    // const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
+    const testUrl = "http://localhost:8080/search";
     if (this.cancel) {
       this.cancel.cancel(); // Cancel the previous request before making a new request
     }
     this.cancel = axios.CancelToken.source(); // Create a new CancelToken
 
     axios
-      .get(searchUrl, {
-        cancelToken: this.cancel.token,
-      })
+      .get(
+        testUrl,
+        {
+          params: { query: this.state.query },
+        },
+        {
+          cancelToken: this.cancel.token,
+        }
+      )
       .then((res) => {
-        // console.log(res.data)
+        console.log(res);
+
         // Change hits to match coaster data
-        const resultsNotFoundMsg = !res.data.hits.length
+        const resultsNotFoundMsg = !res.data.length
           ? "Where are all the coasters?"
           : "";
         this.setState({
           // CHANGE HITS TO PARK ASSOCIATED NAME IN DATA
-          results: res.data.hits,
+          results: res.data /* data["hydra:member"][0].name */,
           message: resultsNotFoundMsg,
         });
       })
@@ -66,6 +73,7 @@ class Search extends React.Component {
       return (
         <div className="results-container">
           {results.map((results) => {
+            console.log(results);
             return (
               //   Make this the park name, onclick user will see coasters
               <a
@@ -91,7 +99,9 @@ class Search extends React.Component {
   };
 
   render() {
+    // console.log(this.handleOnInputChange);
     const { query, message } = this.state;
+    console.log(query);
     return (
       <div className="container">
         <h2 className="heading">TRAX</h2>
