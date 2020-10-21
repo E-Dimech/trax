@@ -10,42 +10,40 @@ class Search extends React.Component {
       query: "",
       results: {},
       message: "",
+      hide: true,
     };
-    // this.cancel = "";
+    this.cancel = "";
   }
 
   fetchSearchResults = (/*updatedPageNo = "",*/ _query) => {
     // const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : "";
-    // const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
     const testUrl = "http://localhost:8080/search"; /* + query*/
-    // if (this.cancel) {
-    //   this.cancel.cancel(); // Cancel the previous request before making a new request
-    // }
-    // this.cancel = axios.CancelToken.source(); // Create a new CancelToken
+    if (this.cancel) {
+      this.cancel.cancel(); // Cancel the previous request before making a new request
+    }
+    this.cancel = axios.CancelToken.source(); // Create a new CancelToken
 
     axios
       .get(
         testUrl,
         {
           params: { query: this.state.query },
+        },
+        {
+          cancelToken: this.cancel.token,
         }
-        // ,
-        // {
-        //   cancelToken: this.cancel.token,
-        // }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
-        // Change hits to match coaster data
-        const resultsNotFoundMsg = !res.data.length
+        const resultsNotFoundMsg = !res.data.name.length
           ? "Where are all the coasters?"
           : "";
         this.setState({
-          // CHANGE HITS TO PARK ASSOCIATED NAME IN DATA
-          results: res.data /* data["hydra:member"][0].name */,
+          results: res.data,
           message: resultsNotFoundMsg,
         });
+        // console.log(res.data);
       })
       .catch((error) => {
         if (axios.isCancel(error) || error) {
@@ -67,39 +65,54 @@ class Search extends React.Component {
     }
   };
 
-  renderSearchResults = () => {
-    const { results } = this.state;
-
-    if (Object.keys(results).length && results.length) {
-      return (
-        <div className="results-container">
-          {results.map((results) => {
-            console.log(results);
-
-            return (
-              //   Make this the park name, onclick user will see coasters
-              <a key={results.id} href={results.image} className="result-item">
-                {/* CONFIGURE THIS SECTION TO MATCH COASTER DATA */}
-                {/* <h6 className="image-username">{results.name}</h6> */}
-                <div className="image-wrapper">
-                  <img
-                    src={results.previewURL}
-                    alt={results.username}
-                    className="image"
-                  />
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      );
-    }
+  // renderSearchResults = () => {
+  //   // const { results } = this.state;
+  //   const results = this.state.results;
+  //   console.log(results, "this is the result");
+  //   console.log(this.state.results, "this is this.state");
+  //   if (Object.keys(results).length && results.length) {
+  //     return (
+  //       <div className="results-container">
+  //         {this.state.results.map((results) => {
+  //           return <p>{results.name}testing</p>;
+  //           // return (
+  //           //   //   Make this the park name, onclick user will see coasters
+  //           //   <a key={results.id} href={results.image} className="result-item">
+  //           //     {/* CONFIGURE THIS SECTION TO MATCH COASTER DATA */}
+  //           //     {/* <h6 className="image-username">{results.name}</h6> */}
+  //           //     <div className="image-wrapper">
+  //           //       <img
+  //           //         src={results.previewURL}
+  //           //         alt={results.username}
+  //           //         className="image"
+  //           //       />
+  //           //     </div>
+  //           //   </a>
+  //           // );
+  //         })}
+  //       </div>
+  //     );
+  //   }
+  // };
+  hide = () => {
+    this.setState({ hide: false });
   };
 
   render() {
-    // console.log(this.handleOnInputChange);
-    const { query, message } = this.state;
-    console.log(query);
+    const { query, message, results } = this.state;
+    let hide;
+    if (this.state.results) {
+      hide = (
+        <div>
+          <p>Coaster: {results.name} </p>
+          <p>Park: {results.park}</p>
+          <p>Height: {results.height} m </p>
+          <p>Speed: {results.speed} mph </p>
+        </div>
+      );
+    } else {
+      hide = <div></div>;
+    }
     return (
       <div className="container">
         <h2 className="heading">TRAX</h2>
@@ -114,13 +127,19 @@ class Search extends React.Component {
             placeholder="Enter Park Name..."
             onChange={this.handleOnInputChange}
           />
-          {/* Find search img */}
           <img className="search-icon" src={magnify} alt="search" />
         </label>
-        {/*Error Message*/}
+        <div>{hide}</div>
+        {/* <div>
+          Coaster: <b>{results ? results.name : null} </b>
+        </div> */}
+        {/* <p>Coaster: {results.name} </p>
+        <p>Park: {results.park}</p>
+        <p>Height: {results.height}</p>
+        <p>Speed: {results.speed}</p> */}
+        {/* <img src={results.image} alt="roller coaster" /> */}
         {message && <p className="message">{message}</p>}
-        {/* Result */}
-        {this.renderSearchResults()}
+        {/* {this.renderSearchResults()} */}
       </div>
     );
   }

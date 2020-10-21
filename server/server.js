@@ -24,10 +24,10 @@ app.get("/search", function (req, res) {
     .then((coasters) => {
       const createArray = Object.values(coasters.data["hydra:member"]);
 
-      console.log(createArray[0].name.toLowerCase());
-      console.log(req.query.query.toLowerCase());
+      // console.log(createArray[0].name.toLowerCase());
+      // console.log(req.query.query.toLowerCase());
 
-      // console.log(Object.keys(coasters.data["hydra:member"][0]));
+      console.log(Object.keys(coasters.data["hydra:member"][0]));
       // console.log(typeof coasters.data["hydra:member"][0]);
 
       const findCoaster = createArray.filter((coasterObject) => {
@@ -35,10 +35,13 @@ app.get("/search", function (req, res) {
           coasterObject.name.toLowerCase() === req.query.query.toLowerCase()
         );
       });
-      //map to create individual array to pass to client side.
+      //map to create individual array to pass to client
       res.send({
         name: findCoaster[0].name,
         park: findCoaster[0].park.name,
+        height: findCoaster[0].height,
+        speed: findCoaster[0].speed,
+        image: findCoaster[0].mainImage.path,
       });
       // console.log(findCoaster);
     })
