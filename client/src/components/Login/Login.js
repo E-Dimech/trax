@@ -13,8 +13,19 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      // uid: null,
     };
   }
+  // componentDidMount() {
+  //   fire.auth().onAuthStateChanged((userState) => {
+  //     if (userState) {
+  //       console.log(userState);
+  //       this.setState({ uid: userState.uid });
+  //     } else {
+  //       // No user is signed in.
+  //     }
+  //   });
+  // }
 
   login = (e) => {
     e.preventDefault();
@@ -26,7 +37,8 @@ class Login extends React.Component {
           .database()
           .ref("users/" + res.user.uid)
           .set({
-            uid: "",
+            uid: res.user.uid,
+            email: res.user.email,
           });
       })
       .then((u) => {
@@ -47,7 +59,7 @@ class Login extends React.Component {
           .database()
           .ref("users/" + res.user.uid)
           .set({
-            uid: "",
+            uid: res.user.uid,
           });
       })
       .then((u) => {

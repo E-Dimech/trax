@@ -30,7 +30,9 @@ class Landing extends React.Component {
     });
   }
   render() {
-    return <>{this.state.user ? <Home /> : <Login />}</>;
+    return (
+      <>{this.state.user ? <Home uid={this.state.user.uid} /> : <Login />}</>
+    );
   }
 }
 

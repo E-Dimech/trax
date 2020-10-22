@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 // import fire from "../../config/fire";
-// import firebase from "firebase";
+import firebase from "firebase";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
 
@@ -56,17 +56,16 @@ class Search extends React.Component {
     // }
   };
 
-  // addCredit = (e) => {
-  //   e.preventDefault();
-  //   firebase
-  //     .database()
-  //     .ref("users/" + res.user.uid)
-  //     .child("credits/" + results.name)
-  //     // .set({   })
-  //     .push(
-  //       name:
-  //     );
-  // };
+  addCredit = (e) => {
+    e.preventDefault();
+
+    firebase
+      .database()
+      .ref("users/" + this.props.location.state.uid)
+      .push({
+        creditName: this.state.results.name,
+      });
+  };
 
   render() {
     const { query, results } = this.state;

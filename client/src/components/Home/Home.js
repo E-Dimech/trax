@@ -13,7 +13,7 @@ class Home extends React.Component {
     return (
       <div className="welcome">
         <h1 className="welcome__title">HOME HOME</h1>
-        <Link to="/Search">
+        <Link to={{ pathname: "/Search", state: this.props }}>
           <img className="welcome__image" src={Maverick} alt="trax" />
         </Link>
         <button className="welcome__button" onClick={this.logout}>
