@@ -1,5 +1,7 @@
 import React from "react";
 import fire from "../../config/fire";
+import firebase from "firebase";
+// import "firebase/database";
 // import Trax from "../../assets/images/traxLogo.png";
 import "./Login.scss";
 
@@ -19,6 +21,14 @@ class Login extends React.Component {
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((res) => {
+        firebase
+          .database()
+          .ref("users/" + res.user.uid)
+          .set({
+            uid: "",
+          });
+      })
       .then((u) => {
         console.log("Successfully Logged in");
       })
@@ -32,8 +42,15 @@ class Login extends React.Component {
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((res) => {
+        firebase
+          .database()
+          .ref("users/" + res.user.uid)
+          .set({
+            uid: "",
+          });
+      })
       .then((u) => {
-        console.log(u);
         console.log("Successful Signup");
       })
       .catch((error) => {
