@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+// import fire from "../../config/fire";
+// import firebase from "firebase";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
 
@@ -54,6 +56,18 @@ class Search extends React.Component {
     // }
   };
 
+  // addCredit = (e) => {
+  //   e.preventDefault();
+  //   firebase
+  //     .database()
+  //     .ref("users/" + res.user.uid)
+  //     .child("credits/" + results.name)
+  //     // .set({   })
+  //     .push(
+  //       name:
+  //     );
+  // };
+
   render() {
     const { query, results } = this.state;
     // console.log(results);
@@ -78,12 +92,18 @@ class Search extends React.Component {
         </form>
         {/* hasOwnProperty("park") no keys*/}
         {Object.keys(this.state.results).length && (
-          <div>
-            <p>Coaster: {results.name} </p>
-            <p>Park: {results.park}</p>
-            <p>Height: {results.height} m </p>
-            <p>Speed: {results.speed} mph </p>
+          <div className="search__stats">
+            <p className="search__stats-name">Coaster: {results.name} </p>
+            <p className="search__stats-park">Park: {results.park}</p>
+            <p className="search__stats-height">Height: {results.height} m </p>
+            <p className="search__stats-speed">Speed: {results.speed} mph </p>
             {/* <img src={results.image} alt="coaster" /> */}
+            <button
+              onClick={this.addCredit}
+              className="search__stats-addCredit"
+            >
+              ADD COASTER
+            </button>
           </div>
         )}
       </div>

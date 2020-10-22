@@ -32,7 +32,7 @@
 }
 .search-icon {
   position: absolute;
-  top: 5px;
+  top: -12px;
   //   font-size: 24px;
   color: #555;
   right: 18px;
@@ -88,5 +88,22 @@ a:hover {
 }
 
 ::placeholder {
+  font-family: $font-stack;
+}
+
+.search__stats-addCredit {
+  // position: absolute;
+  // top: 95px;
+  // left: 15vw;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: #603bbb;
+  cursor: pointer;
+  border-radius: 5px;
   font-family: $font-stack;
 }
