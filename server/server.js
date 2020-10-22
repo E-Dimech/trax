@@ -39,7 +39,7 @@ app.get("/search", function (req, res) {
         park: findCoaster.park.name,
         height: findCoaster.height,
         speed: findCoaster.speed,
-        // image: findCoaster[0].mainImage,
+        image: findCoaster.mainImage.path,
       });
       // console.log(image);
       // console.log(findCoaster);

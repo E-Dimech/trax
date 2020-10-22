@@ -83,6 +83,7 @@ class Search extends React.Component {
             <p>Park: {results.park}</p>
             <p>Height: {results.height} m </p>
             <p>Speed: {results.speed} mph </p>
+            <img src={results.image} alt="coaster" />
           </div>
         )}
       </div>

@@ -33,7 +33,7 @@ class Login extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        //
+        console.log(u);
         console.log("Successful Signup");
       })
       .catch((error) => {
