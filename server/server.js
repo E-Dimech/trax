@@ -12,7 +12,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/search", function (req, res) {
-  // console.log(res.data.data);
   axios
     .get("https://captaincoaster.com/api/coasters", {
       headers: {
@@ -27,7 +26,6 @@ app.get("/search", function (req, res) {
       // console.log(req.query.query.toLowerCase());
 
       // console.log(Object.keys(coasters.data["hydra:member"][1]));
-      // console.log(typeof coasters.data["hydra:member"][0]);
 
       const findCoaster = createArray.find(
         (coasterObject) => coasterObject.name === req.query.query
@@ -35,25 +33,19 @@ app.get("/search", function (req, res) {
       /*.query.query.toLowerCase();*/
 
       res.send({
+        id: findCoaster.id,
         name: findCoaster.name,
         park: findCoaster.park.name,
         height: findCoaster.height,
         speed: findCoaster.speed,
-        // image: findCoaster.mainImage.path,
+        image:
+          "https://captaincoaster.com/images/coasters/" +
+          findCoaster.mainImage.path,
       });
-      // console.log(image);
-      // console.log(findCoaster);
+      console.log(findCoaster.mainImage.path);
     })
     .catch((err) => console.log(err));
 });
-
-// app.get("/api/parks", function (req, res) {
-//   res.send();
-// });
-
-// app.get("/api/coasters", function (req, res) {
-//   res.send();
-// });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

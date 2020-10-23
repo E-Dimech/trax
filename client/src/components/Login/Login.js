@@ -2,30 +2,16 @@ import React from "react";
 import fire from "../../config/fire";
 import firebase from "firebase";
 // import "firebase/database";
-// import Trax from "../../assets/images/traxLogo.png";
 import "./Login.scss";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    // this.login = this.login.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
     this.state = {
       email: "",
       password: "",
-      // uid: null,
     };
   }
-  // componentDidMount() {
-  //   fire.auth().onAuthStateChanged((userState) => {
-  //     if (userState) {
-  //       console.log(userState);
-  //       this.setState({ uid: userState.uid });
-  //     } else {
-  //       // No user is signed in.
-  //     }
-  //   });
-  // }
 
   login = (e) => {
     e.preventDefault();

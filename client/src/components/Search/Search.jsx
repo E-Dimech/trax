@@ -12,6 +12,7 @@ class Search extends React.Component {
       query: "",
       results: {},
       message: "",
+      credCount: null,
     };
   }
 
@@ -62,18 +63,34 @@ class Search extends React.Component {
     firebase
       .database()
       .ref("users/" + this.props.location.state.uid)
+      .child("credit")
       .push({
         creditName: this.state.results.name,
+      });
+    this.howMany();
+  };
+
+  howMany = () => {
+    console.log(this.props.location.state.uid);
+    firebase
+      .database()
+      .ref("users/" + this.props.location.state.uid)
+
+      .once("value")
+      .then((snapshot) => {
+        const credCount = snapshot.child("credit").numChildren();
+        this.setState({ credCount });
       });
   };
 
   render() {
-    const { query, results } = this.state;
+    const { query, results, credCount } = this.state;
     // console.log(results);
 
     return (
       <div className="container">
         <h2 className="heading">TRAX</h2>
+        <p className="test">{credCount}</p>
 
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label className="search-label" htmlFor="search-input">
@@ -96,7 +113,7 @@ class Search extends React.Component {
             <p className="search__stats-park">Park: {results.park}</p>
             <p className="search__stats-height">Height: {results.height} m </p>
             <p className="search__stats-speed">Speed: {results.speed} mph </p>
-            {/* <img src={results.image} alt="coaster" /> */}
+            <img src={results.image} alt="coaster" />
             <button
               onClick={this.addCredit}
               className="search__stats-addCredit"
