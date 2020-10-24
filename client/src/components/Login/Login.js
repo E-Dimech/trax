@@ -46,6 +46,7 @@ class Login extends React.Component {
           .ref("users/" + res.user.uid)
           .set({
             uid: res.user.uid,
+            email: res.user.email,
           });
       })
       .then((u) => {

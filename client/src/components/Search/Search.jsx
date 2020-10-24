@@ -4,6 +4,8 @@ import axios from "axios";
 import firebase from "firebase";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
+import coastie from "../../assets/icons/roller-coaster.svg";
+import levi from "../../assets/images/hiclipart.com.png";
 
 class Search extends React.Component {
   constructor(props) {
@@ -14,6 +16,10 @@ class Search extends React.Component {
       message: "",
       credCount: null,
     };
+  }
+
+  componentDidMount() {
+    this.howMany();
   }
 
   fetchSearchResults = (e) => {
@@ -69,7 +75,6 @@ class Search extends React.Component {
       });
     this.howMany();
   };
-
   howMany = () => {
     console.log(this.props.location.state.uid);
     firebase
@@ -90,7 +95,14 @@ class Search extends React.Component {
     return (
       <div className="container">
         <h2 className="heading">TRAX</h2>
-        <p className="test">{credCount}</p>
+        <img
+          className="coaster-credit-image"
+          src={coastie}
+          alt="cartoon coaster"
+        />
+
+        <h2 className="coaster-credit-title">Total Coaster Credits</h2>
+        <p className="coaster-credit-count">{credCount}</p>
 
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label className="search-label" htmlFor="search-input">
@@ -100,28 +112,38 @@ class Search extends React.Component {
               type="text"
               value={query}
               id="search-input"
-              placeholder="Enter Park Name..."
+              placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
             />
             <img className="search-icon" src={magnify} alt="search" />
           </label>
         </form>
         {/* hasOwnProperty("park") no keys*/}
-        {Object.keys(this.state.results).length && (
-          <div className="search__stats">
-            <p className="search__stats-name">Coaster: {results.name} </p>
-            <p className="search__stats-park">Park: {results.park}</p>
-            <p className="search__stats-height">Height: {results.height} m </p>
-            <p className="search__stats-speed">Speed: {results.speed} mph </p>
-            <img src={results.image} alt="coaster" />
-            <button
-              onClick={this.addCredit}
-              className="search__stats-addCredit"
-            >
-              ADD COASTER
-            </button>
-          </div>
-        )}
+        {
+          // Object.keys(this.state.results).length && (
+          this.state.results.hasOwnProperty("park") && (
+            <div className="search-stats">
+              <p className="search-stats__name">COASTER: {results.name} </p>
+              <p className="search-stats__park">PARK: {results.park}</p>
+              <p className="search-stats__height">
+                HEIGHT: {results.height} m{" "}
+              </p>
+              <p className="search-stats__speed">SPEED: {results.speed} mph </p>
+              <img
+                className="search-stats__image"
+                src={results.image}
+                alt="coaster"
+              />
+              <button
+                onClick={this.addCredit}
+                className="search-stats__addCredit"
+              >
+                ADD COASTER
+              </button>
+            </div>
+          )
+        }
+        <img className="search-stats__bottom-logo" src={levi} alt="leviathan" />
       </div>
     );
   }
