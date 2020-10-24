@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 // import fire from "../../config/fire";
 import firebase from "firebase";
+import { Link } from "react-router-dom";
+// import Home from "../Home/Home";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
 import coastie from "../../assets/icons/roller-coaster.svg";
@@ -76,7 +78,7 @@ class Search extends React.Component {
     this.howMany();
   };
   howMany = () => {
-    console.log(this.props.location.state.uid);
+    // console.log(this.props.location.state.uid);
     firebase
       .database()
       .ref("users/" + this.props.location.state.uid)
@@ -143,6 +145,9 @@ class Search extends React.Component {
             </div>
           )
         }
+        {/* credCount={this.credCount} */}
+        {/* <Link to={{ pathname: "/Home" }}>Home</Link> */}
+        {/* <Link to="/Home">Home</Link> */}
         <img className="search-stats__bottom-logo" src={levi} alt="leviathan" />
       </div>
     );

@@ -6,7 +6,7 @@ const port = process.env.PORT || 8080;
 
 app.use(bodyParser());
 
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
@@ -24,9 +24,6 @@ app.get("/search", function (req, res) {
       console.log(req.query.query);
       // console.log(createArray[0].name.toLowerCase());
       // console.log(req.query.query.toLowerCase());
-
-      // console.log(Object.keys(coasters.data["hydra:member"][1]));
-
       const findCoaster = createArray.find(
         (coasterObject) => coasterObject.name === req.query.query
       );
@@ -48,12 +45,3 @@ app.get("/search", function (req, res) {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// Small collection (less than 100 documents)
-// Use with care - Frontend user experience may take a hit
-
-// Handling this on the front end should be fine as long as you are not doing too much logic with this returned array.
-
-// db.collection('...').get().then(snap => {
-//    size = snap.size // will return the collection size
-// });
