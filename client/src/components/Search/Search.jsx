@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 // import fire from "../../config/fire";
 import firebase from "firebase";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import Home from "../Home/Home";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
@@ -147,7 +147,12 @@ class Search extends React.Component {
         }
         {/* credCount={this.credCount} */}
         {/* <Link to={{ pathname: "/Home" }}>Home</Link> */}
-        {/* <Link to="/Home">Home</Link> */}
+        <button
+          className="search-stats__home-button"
+          onClick={this.props.history.goBack}
+        >
+          Home
+        </button>
         <img className="search-stats__bottom-logo" src={levi} alt="leviathan" />
       </div>
     );

@@ -5,25 +5,10 @@
   min-height: 100vh;
   //   padding: 0 5px;
   //   background: #e1e1da;
-  background: #bb0a3f;
+  background-color: #1d2968;
+  // background-color: black;
   display: flex;
-  position: relative;
-
-  &__heading {
-    font-size: 80px;
-    position: absolute;
-    top: 120px;
-    left: 35px;
-    // margin-left: 9%;
-    // margin-bottom: 5%;
-    // padding: 16px 8px 10px 0;
-    color: rgb(193, 25, 98);
-    // text-align: center;
-    font-family: $font-stack;
-    @include tablet {
-      left: 250px;
-    }
-  }
+  // position: relative;
 
   &__form {
     padding: 60px;
@@ -34,6 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     background: radial-gradient(
       ellipse at left bottom,
@@ -41,6 +27,26 @@
       rgba(38, 20, 72, 0.9) 59%,
       rgba(17, 27, 75, 0.9) 100%
     );
+  }
+
+  &__heading {
+    font-size: 80px;
+    margin: 0 auto;
+    padding: 0;
+    // text-align: center;
+    // justify-content: center;
+    // align-items: center;
+    position: absolute;
+    top: 2%;
+    left: 9%;
+    // margin-left: 9%;
+    // margin-bottom: 5%;
+    // padding: 16px 8px 10px 0;
+    color: #b2375a;
+    font-family: $font-stack;
+    @include tablet {
+      left: 155px;
+    }
   }
 
   &__label {
@@ -55,6 +61,7 @@
     border: none;
     outline: none;
     font-size: 19px;
+    font-family: $font-stack;
     padding: 10px 5px;
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
@@ -74,6 +81,7 @@
     padding: 15px 0;
     color: #fff;
     font-size: 16px;
+    font-family: $font-stack;
     letter-spacing: 1px;
     background: #603bbb;
     cursor: pointer;
@@ -89,6 +97,7 @@
     padding: 15px 0;
     color: #fff;
     font-size: 16px;
+    font-family: $font-stack;
     letter-spacing: 1px;
     background: #603bbb;
     cursor: pointer;

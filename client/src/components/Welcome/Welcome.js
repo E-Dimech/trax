@@ -5,9 +5,9 @@ import "./Welcome.scss";
 
 function Welcome() {
   return (
-    <div className="welcome">
+    <div className="welcome-page">
       <Link to="/Landing">
-        <img className="welcome__image" src={Trax} alt="trax" />
+        <img className="welcome-page__image" src={Trax} alt="trax" />
       </Link>
     </div>
   );
