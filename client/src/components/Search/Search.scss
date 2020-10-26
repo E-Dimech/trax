@@ -10,7 +10,7 @@
   font-family: $font-stack;
 }
 .coaster-credit-image {
-  width: 50px;
+  width: 20%;
   margin: 0 auto;
   padding: 0;
 }
@@ -23,6 +23,11 @@
   letter-spacing: 1.5px;
 }
 .coaster-credit-count {
+  margin: 0 auto;
+  font-size: 3rem;
+  color: #b2375a;
+}
+.coaster-credit-favourites {
   margin: 0 auto;
   font-size: 3rem;
   color: #b2375a;

@@ -1,7 +1,6 @@
 import React from "react";
 import fire from "../../config/fire";
 import firebase from "firebase";
-// import "firebase/database";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -22,7 +21,7 @@ class Login extends React.Component {
         firebase
           .database()
           .ref("users/" + res.user.uid)
-          .set({
+          .update({
             uid: res.user.uid,
             email: res.user.email,
           });
@@ -63,9 +62,9 @@ class Login extends React.Component {
   render() {
     return (
       <>
+        <h2 className="login-form__heading">TRAX</h2>
         <div className="login-form">
           <form className="login-form__form">
-            <h2 className="login-form__heading">TRAX</h2>
             <div className="login-form__email-container">
               <label className="login-form__label">Email Address</label>
               <input
@@ -75,7 +74,6 @@ class Login extends React.Component {
                 id="email"
                 type="email"
                 name="email"
-                //   placeholder="Enter email"
               />
             </div>
             <div className="login-form__password-container">
@@ -87,7 +85,6 @@ class Login extends React.Component {
                 id="password"
                 type="password"
                 name="password"
-                //   placeholder="Password"
               />
             </div>
             <div className="login-form__button-container">

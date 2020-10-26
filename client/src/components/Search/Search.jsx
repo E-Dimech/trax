@@ -17,11 +17,13 @@ class Search extends React.Component {
       results: {},
       message: "",
       credCount: null,
+      favList: null,
     };
   }
 
   componentDidMount() {
     this.howMany();
+    this.showFavourite();
   }
 
   fetchSearchResults = (e) => {
@@ -90,8 +92,50 @@ class Search extends React.Component {
       });
   };
 
+  addFavourite = (e) => {
+    e.preventDefault();
+
+    firebase
+      .database()
+      .ref("users/" + this.props.location.state.uid)
+      .child("favourite")
+      .push({
+        top5: this.state.results.name,
+      });
+    this.showFavourite();
+  };
+
+  showFavourite = () => {
+    firebase
+      .database()
+      .ref("users/" + this.props.location.state.uid)
+
+      .once("value")
+      .then((snapshot) => {
+        const favList = snapshot.child("favourite").numChildren();
+        this.setState({ favList });
+        console.log(favList);
+      });
+  };
+  // showFavourite = () => {
+  //   firebase
+  //     .database()
+  //     .ref("favourite")
+  //     .get()
+  //     .then((snapshot) => {
+  //       snapshot.docs.forEach((doc) => {
+  //         if (doc.exists) {
+  //           const { top5 } = doc.data();
+  //           this.setState({
+  //             fav: top5,
+  //           });
+  //         }
+  //       });
+  //     });
+  // };
+
   render() {
-    const { query, results, credCount } = this.state;
+    const { query, results, credCount, favList } = this.state;
     // console.log(results);
 
     return (
@@ -105,6 +149,7 @@ class Search extends React.Component {
 
         <h2 className="coaster-credit-title">Total Coaster Credits</h2>
         <p className="coaster-credit-count">{credCount}</p>
+        <p className="coaster-credit-favourites">{favList}</p>
 
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label className="search-label" htmlFor="search-input">
@@ -120,7 +165,6 @@ class Search extends React.Component {
             <img className="search-icon" src={magnify} alt="search" />
           </label>
         </form>
-        {/* hasOwnProperty("park") no keys*/}
         {
           // Object.keys(this.state.results).length && (
           this.state.results.hasOwnProperty("park") && (
@@ -141,6 +185,12 @@ class Search extends React.Component {
                 className="search-stats__addCredit"
               >
                 ADD COASTER
+              </button>
+              <button
+                onClick={this.addFavourite}
+                className="search-stats__addCredit"
+              >
+                ADD TO FAVOURITE
               </button>
             </div>
           )

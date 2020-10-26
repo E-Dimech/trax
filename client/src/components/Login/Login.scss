@@ -2,17 +2,13 @@
 
 .login-form {
   width: 100%;
-  min-height: 100vh;
-  //   padding: 0 5px;
-  //   background: #e1e1da;
+  min-height: 80vh;
   background-color: #1d2968;
-  // background-color: black;
   display: flex;
-  // position: relative;
-
   &__form {
-    padding: 60px;
+    padding: 20px 60px;
     margin: auto;
+    margin-top: 10px;
     width: 60%;
     max-width: 520px;
     min-height: 400px;
@@ -28,27 +24,15 @@
       rgba(17, 27, 75, 0.9) 100%
     );
   }
-
   &__heading {
     font-size: 80px;
-    margin: 0 auto;
     padding: 0;
-    // text-align: center;
-    // justify-content: center;
-    // align-items: center;
-    position: absolute;
-    top: 2%;
-    left: 9%;
-    // margin-left: 9%;
-    // margin-bottom: 5%;
-    // padding: 16px 8px 10px 0;
+    margin-top: 100px;
+    margin-bottom: 0;
+    text-align: center;
     color: #b2375a;
     font-family: $font-stack;
-    @include tablet {
-      left: 155px;
-    }
   }
-
   &__label {
     color: white;
     margin: 14px 0;
@@ -88,9 +72,6 @@
     border-radius: 5px;
   }
   &__button-signup {
-    // position: absolute;
-    // top: 95px;
-    // left: 15vw;
     border: none;
     outline: none;
     width: 100%;
