@@ -51,19 +51,6 @@ class Search extends React.Component {
     this.setState({ query });
   };
 
-  // deleteCredit = (e) => {
-  //   e.preventDefault();
-
-  //   firebase
-  //     .database()
-  //     .ref("users/" + this.props.location.state.uid)
-  //     .child("credit")
-  //     .update({
-  //       creditName: this.state.results.name,
-  //     });
-  //   this.howMany();
-  // };
-
   addCredit = (e) => {
     e.preventDefault();
 
@@ -76,6 +63,7 @@ class Search extends React.Component {
       });
     this.howMany();
   };
+
   howMany = () => {
     firebase
       .database()
@@ -115,8 +103,6 @@ class Search extends React.Component {
       });
   };
 
-  handleSearchClear = () => this.handleQueryChange("");
-
   render() {
     const { query, results, credCount, topFavCoasterNames } = this.state;
     // Below formats new coaster favs to a new line
@@ -127,58 +113,82 @@ class Search extends React.Component {
       });
     }
     return (
-      <div className="container">
-        <h2 className="heading">TRAX</h2>
+      <div className="coaster-credit">
+        <h2 className="coaster-credit__heading">TRAX</h2>
         <img
-          className="coaster-credit-image"
+          className="coaster-credit__cartoon-image"
           src={coastie}
           alt="cartoon coaster"
         />
-        <h2 className="coaster-credit-title">Total Coaster Credits</h2>
-        <p className="coaster-credit-count">{credCount}</p>
-        <h3 className="coaster-credit-fav-title">My Top 5 Coasters</h3>
-        <p className="coaster-credit-favourites">{formatTop5}</p>
-        <div className="testtest">
-          <img className="test" src={rider} alt="test" />
-          <img className="tests" src={riders} alt="test" />
-          <img className="test" src={rider} alt="test" />
+        <h2 className="coaster-credit__title">Total Coaster Credits</h2>
+        <p className="coaster-credit__credit-count">{credCount}</p>
+        <h3 className="coaster-credit__fav-title">My Top 5 Coasters</h3>
+        <p className="coaster-credit__favourites">{formatTop5}</p>
+        <div className="coaster-credit__coaster-peeps-container">
+          <img
+            className="coaster-credit__coaster-peeps-single"
+            src={rider}
+            alt="test"
+          />
+          <img
+            className="coaster-credit__coaster-peeps-double"
+            src={riders}
+            alt="test"
+          />
+          <img
+            className="coaster-credit__coaster-peeps-single"
+            src={rider}
+            alt="test"
+          />
         </div>
 
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
-          <label className="search-label" htmlFor="search-input">
+          <label
+            className="coaster-credit__search-label"
+            htmlFor="search-input"
+          >
             <input
-              className="container-input"
+              className="coaster-credit__search-input"
               name="query"
               type="text"
               value={query}
               id="search-input"
               placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
-              onClear={this.handleSearchClear}
             />
-            <img className="search-icon" src={magnify} alt="search" />
+            <img
+              className="coaster-credit__search-icon"
+              src={magnify}
+              alt="search"
+            />
           </label>
         </form>
         {
           // Object.keys(this.state.results).length && (
           this.state.results.hasOwnProperty("park") && (
-            <div className="search-stats">
-              <p className="search-stats__name">COASTER: {results.name} </p>
-              <p className="search-stats__park">PARK: {results.park}</p>
-              <p className="search-stats__height">
+            <div className="coaster-credit__search-stats">
+              <p className="coaster-credit__search-stats-name">
+                COASTER: {results.name}{" "}
+              </p>
+              <p className="coaster-credit__search-stats-park">
+                PARK: {results.park}
+              </p>
+              <p className="coaster-credit__search-stats-height">
                 HEIGHT: {results.height} m{" "}
               </p>
-              <p className="search-stats__speed">SPEED: {results.speed} mph </p>
+              <p className="coaster-credit__search-stats-speed">
+                SPEED: {results.speed} mph{" "}
+              </p>
               <img
-                className="search-stats__image"
+                className="coaster-credit__search-stats-image"
                 src={results.image}
                 alt="coaster"
               />
               <button
                 onClick={this.addCredit}
-                className="search-stats__addCredit"
+                className="coaster-credit__search-stats-add-button"
               >
-                ADD COASTER
+                ADD COASTER CREDIT
               </button>
               {/* <button
                 onClick={this.deleteCredit}
@@ -188,23 +198,40 @@ class Search extends React.Component {
               </button> */}
               <button
                 onClick={this.addFavourite}
-                className="search-stats__addCredit"
+                className="coaster-credit__search-stats-add-button"
               >
-                ADD TO FAVOURITE
+                ADD TO TOP 5
               </button>
             </div>
           )
         }
         <button
-          className="search-stats__home-button"
+          className="coaster-credit__search-stats-home-button"
           onClick={this.props.history.goBack}
         >
           Home
         </button>
-        <img className="search-stats__bottom-logo" src={levi} alt="leviathan" />
+        <img
+          className="coaster-credit__search-stats-bottom-logo"
+          src={levi}
+          alt="leviathan"
+        />
       </div>
     );
   }
 }
 
 export default Search;
+
+// deleteCredit = (e) => {
+//   e.preventDefault();
+
+//   firebase
+//     .database()
+//     .ref("users/" + this.props.location.state.uid)
+//     .child("credit")
+//     .update({
+//       creditName: this.state.results.name,
+//     });
+//   this.howMany();
+// };
