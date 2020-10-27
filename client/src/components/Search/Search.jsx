@@ -17,7 +17,8 @@ class Search extends React.Component {
       results: {},
       message: "",
       credCount: null,
-      favList: null,
+      // favList: null,
+      topFavCoasterNames: null,
     };
   }
 
@@ -67,6 +68,19 @@ class Search extends React.Component {
     // }
   };
 
+  // deleteCredit = (e) => {
+  //   e.preventDefault();
+
+  //   firebase
+  //     .database()
+  //     .ref("users/" + this.props.location.state.uid)
+  //     .child("credit")
+  //     .update({
+  //       creditName: this.state.results.name,
+  //     });
+  //   this.howMany();
+  // };
+
   addCredit = (e) => {
     e.preventDefault();
 
@@ -105,37 +119,44 @@ class Search extends React.Component {
     this.showFavourite();
   };
 
+  // showFavourite = () => {
+  //   firebase
+  //     .database()
+  //     .ref("users/" + this.props.location.state.uid)
+
+  //     .once("value")
+  //     .then((snapshot) => {
+  //       const favList = snapshot.child("favourite").numChildren();
+  //       this.setState({ favList });
+  //       console.log(favList);
+  //     });
+  // };
   showFavourite = () => {
     firebase
       .database()
       .ref("users/" + this.props.location.state.uid)
-
-      .once("value")
-      .then((snapshot) => {
-        const favList = snapshot.child("favourite").numChildren();
-        this.setState({ favList });
+      .child("favourite")
+      .on("value", (snap) => {
+        // if (Object === "null") {
+        //   return null;
+        // } else {
+        const favList = Object.values(snap.val());
+        const topFavCoasterNames = favList.map((fav) => fav.top5);
+        // (!favList)
+        // coasterLoop = () => [...topFavCoasterNames(10)].map(x => <div></div>)
+        this.setState({ topFavCoasterNames });
         console.log(favList);
+        // }
       });
+    // .then((snapshot) => {
+    //   const favList = snapshot.child("favourite").numChildren();
+    //   this.setState({ favList });
+    //   console.log(favList);
+    // });
   };
-  // showFavourite = () => {
-  //   firebase
-  //     .database()
-  //     .ref("favourite")
-  //     .get()
-  //     .then((snapshot) => {
-  //       snapshot.docs.forEach((doc) => {
-  //         if (doc.exists) {
-  //           const { top5 } = doc.data();
-  //           this.setState({
-  //             fav: top5,
-  //           });
-  //         }
-  //       });
-  //     });
-  // };
 
   render() {
-    const { query, results, credCount, favList } = this.state;
+    const { query, results, credCount, topFavCoasterNames } = this.state;
     // console.log(results);
 
     return (
@@ -149,8 +170,8 @@ class Search extends React.Component {
 
         <h2 className="coaster-credit-title">Total Coaster Credits</h2>
         <p className="coaster-credit-count">{credCount}</p>
-        <p className="coaster-credit-favourites">{favList}</p>
-
+        <h3 className="coaster-credit-fav-title">My Top 5 Coasters</h3>
+        <p className="coaster-credit-favourites">{topFavCoasterNames}</p>
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label className="search-label" htmlFor="search-input">
             <input
@@ -186,6 +207,12 @@ class Search extends React.Component {
               >
                 ADD COASTER
               </button>
+              {/* <button
+                onClick={this.deleteCredit}
+                className="search-stats__deleteCredit"
+              >
+                DELETE COASTER
+              </button> */}
               <button
                 onClick={this.addFavourite}
                 className="search-stats__addCredit"

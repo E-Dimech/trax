@@ -23,7 +23,10 @@ app.get("/search", function (req, res) {
       const createArray = Object.values(coasters.data["hydra:member"]);
       console.log(req.query.query);
       const findCoaster = createArray.find(
-        (coasterObject) => coasterObject.name.toLowerCase() === req.query.query
+        (coasterObject) =>
+          coasterObject.name.toLowerCase() /*||
+          coasterObject.name.toUpperCase()*/ ===
+          req.query.query
       );
 
       res.send({

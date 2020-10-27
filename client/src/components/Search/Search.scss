@@ -18,7 +18,9 @@
   margin: 0 auto;
   padding: 0;
   font-size: 1.5rem;
-  color: #ebcaca;
+  background: -webkit-linear-gradient(#eee, #b2375a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 400;
   letter-spacing: 1.5px;
 }
@@ -27,10 +29,31 @@
   font-size: 3rem;
   color: #b2375a;
 }
+.coaster-credit-fav-container {
+  height: 200px;
+  white-space: pre-wrap;
+  //   width: 20px;
+}
+.coaster-credit-fav-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 4%;
+  font-size: 1.5rem;
+  background: -webkit-linear-gradient(#eee, #b2375a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .coaster-credit-favourites {
-  margin: 0 auto;
-  font-size: 3rem;
+  // margin: 0 auto;
+  margin-top: 0;
+  margin-bottom: 5%;
+  font-size: 2rem;
+  // flex-wrap: wrap;
+  text-align: center;
+  white-space: pre-line;
+  // font-size: 72px;
   color: #b2375a;
+  // color: #b2375a;
 }
 /*Container*/
 .container {
@@ -170,6 +193,21 @@ a:hover {
     border-radius: 5px;
     font-family: $font-stack;
   }
+  // &__deleteCredit {
+  //   border: none;
+  //   outline: none;
+  //   margin: 5% auto;
+  //   width: 250px;
+  //   padding: 15px 0;
+  //   color: #ebcaca;
+  //   font-size: 16px;
+  //   letter-spacing: 1px;
+  //   background: #031c32;
+  //   border: 4px solid #b2375a;
+  //   cursor: pointer;
+  //   border-radius: 5px;
+  //   font-family: $font-stack;
+  // }
   &__home-button {
     border: none;
     outline: none;
