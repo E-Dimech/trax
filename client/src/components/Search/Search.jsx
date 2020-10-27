@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-// import fire from "../../config/fire";
 import firebase from "firebase";
-// import { Link } from "react-router-dom";
-// import Home from "../Home/Home";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
 import coastie from "../../assets/icons/roller-coaster.svg";
+import rider from "../../assets/icons/coasterperson.svg";
+import riders from "../../assets/icons/coasterPeople.svg";
+
 import levi from "../../assets/images/hiclipart.com.png";
 
 class Search extends React.Component {
@@ -17,7 +17,6 @@ class Search extends React.Component {
       results: {},
       message: "",
       credCount: null,
-      // favList: null,
       topFavCoasterNames: null,
     };
   }
@@ -36,36 +35,20 @@ class Search extends React.Component {
         params: { query: this.state.query },
       })
       .then((res) => {
-        // console.log(res);
-        // const resultsNotFoundMsg = !res.data.length
-        //   ? "Where are all the coasters?"
-        //   : "";
         this.setState({
           results: res.data,
-          // message: resultsNotFoundMsg,
         });
         console.log(res.data);
+      })
+      // };
+      .catch((error) => {
+        console.log("Where are all the coasters?");
       });
   };
-  // .catch((error) => {
-  //   if (axios.isCancel(error) || error) {
-  //     this.setState({
-  //       message: "Where are all the coasters?",
-  //     });
-  //   }
-  // });
-  // };
 
   handleOnInputChange = (event) => {
     const query = event.target.value;
     this.setState({ query });
-    // if (!query) {
-    //   this.setState({ query, results: {} });
-    // } else {
-    //   this.setState({ query, loading: true, message: "" }, () => {
-    //     this.fetchSearchResults(1, query);
-    //   });
-    // }
   };
 
   // deleteCredit = (e) => {
@@ -94,7 +77,6 @@ class Search extends React.Component {
     this.howMany();
   };
   howMany = () => {
-    // console.log(this.props.location.state.uid);
     firebase
       .database()
       .ref("users/" + this.props.location.state.uid)
@@ -119,46 +101,31 @@ class Search extends React.Component {
     this.showFavourite();
   };
 
-  // showFavourite = () => {
-  //   firebase
-  //     .database()
-  //     .ref("users/" + this.props.location.state.uid)
-
-  //     .once("value")
-  //     .then((snapshot) => {
-  //       const favList = snapshot.child("favourite").numChildren();
-  //       this.setState({ favList });
-  //       console.log(favList);
-  //     });
-  // };
   showFavourite = () => {
     firebase
       .database()
       .ref("users/" + this.props.location.state.uid)
       .child("favourite")
       .on("value", (snap) => {
-        // if (Object === "null") {
-        //   return null;
-        // } else {
-        const favList = Object.values(snap.val());
-        const topFavCoasterNames = favList.map((fav) => fav.top5);
-        // (!favList)
-        // coasterLoop = () => [...topFavCoasterNames(10)].map(x => <div></div>)
-        this.setState({ topFavCoasterNames });
-        console.log(favList);
-        // }
+        if (snap.val()) {
+          let favList = Object.values(snap.val());
+          const topFavCoasterNames = favList.map((fav) => fav.top5);
+          this.setState({ topFavCoasterNames });
+        }
       });
-    // .then((snapshot) => {
-    //   const favList = snapshot.child("favourite").numChildren();
-    //   this.setState({ favList });
-    //   console.log(favList);
-    // });
   };
+
+  handleSearchClear = () => this.handleQueryChange("");
 
   render() {
     const { query, results, credCount, topFavCoasterNames } = this.state;
-    // console.log(results);
-
+    // Below formats new coaster favs to a new line
+    let formatTop5 = [];
+    if (topFavCoasterNames) {
+      topFavCoasterNames.forEach((coaster, index) => {
+        formatTop5.push(coaster, <br key={index} />);
+      });
+    }
     return (
       <div className="container">
         <h2 className="heading">TRAX</h2>
@@ -167,11 +134,16 @@ class Search extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
-
         <h2 className="coaster-credit-title">Total Coaster Credits</h2>
         <p className="coaster-credit-count">{credCount}</p>
         <h3 className="coaster-credit-fav-title">My Top 5 Coasters</h3>
-        <p className="coaster-credit-favourites">{topFavCoasterNames}</p>
+        <p className="coaster-credit-favourites">{formatTop5}</p>
+        <div className="testtest">
+          <img className="test" src={rider} alt="test" />
+          <img className="tests" src={riders} alt="test" />
+          <img className="test" src={rider} alt="test" />
+        </div>
+
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label className="search-label" htmlFor="search-input">
             <input
@@ -182,6 +154,7 @@ class Search extends React.Component {
               id="search-input"
               placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
+              onClear={this.handleSearchClear}
             />
             <img className="search-icon" src={magnify} alt="search" />
           </label>
@@ -222,8 +195,6 @@ class Search extends React.Component {
             </div>
           )
         }
-        {/* credCount={this.credCount} */}
-        {/* <Link to={{ pathname: "/Home" }}>Home</Link> */}
         <button
           className="search-stats__home-button"
           onClick={this.props.history.goBack}

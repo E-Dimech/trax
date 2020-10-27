@@ -10,12 +10,8 @@ class Home extends React.Component {
   logout() {
     fire.auth().signOut();
   }
-  // componentDidMount() {
-  //   const credCount = this.props.location.state;
-  //   console.log(credCount);
-  // }
+
   render() {
-    console.log(this.props);
     return (
       <div className="welcome">
         <h1 className="welcome__title">TRAX</h1>
@@ -25,10 +21,8 @@ class Home extends React.Component {
             <button className="welcome__add-credit">Add Credits</button>
           </Link>
         </div>
-        {/* <p>You have {this.credCount}</p> */}
 
         <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" />
-        {/* <div className="welcome__logout-container"> */}
         <button className="welcome__logout-button" onClick={this.logout}>
           Logout
         </button>
@@ -37,7 +31,6 @@ class Home extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
-        {/* </div> */}
       </div>
     );
   }

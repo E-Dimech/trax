@@ -37,7 +37,7 @@
 .coaster-credit-fav-title {
   text-align: center;
   margin-top: 0;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
   font-size: 1.5rem;
   background: -webkit-linear-gradient(#eee, #b2375a);
   -webkit-background-clip: text;
@@ -46,7 +46,7 @@
 .coaster-credit-favourites {
   // margin: 0 auto;
   margin-top: 0;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   font-size: 2rem;
   // flex-wrap: wrap;
   text-align: center;
@@ -73,7 +73,7 @@
   margin-bottom: 5%;
   padding: 12px;
   font-family: $font-stack;
-  color: #ebcaca;
+  color: #031c32;
   font-size: 20px;
   box-sizing: border-box;
   outline: none;
@@ -228,7 +228,60 @@ a:hover {
     width: 100%;
   }
 }
+.testtest {
+  display: flex;
+  flex-direction: row;
+}
+.tests {
+  width: 90px;
+  animation: shake 2.82s cubic-bezier(0.66, 0.37, 0.59, 0.97) both;
+  animation-iteration-count: infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
 
+.test {
+  width: 60px;
+  margin-top: 0;
+  animation: shake 1.5s cubic-bezier(0.26, 0.17, 0.39, 0.97) both;
+  animation-iteration-count: infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  // animation: spin 4s linear infinite;
+}
+
+// @keyframes spin {
+//   from {
+//     transform: rotate(-30deg);
+//   }
+//   to {
+//     transform: rotate(30deg);
+//   }
+// }
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
 // .search__stats-addCredit {
 //   // position: absolute;
 //   // top: 95px;
