@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import firebase from "firebase";
-// import SpeechRecognition, {
-//   useSpeechRecognition,
-// } from "react-speech-recognition";
+
 import "./Search.scss";
+
 import magnify from "../../assets/icons/magnifier.svg";
 import coastie from "../../assets/icons/roller-coaster.svg";
 import rider from "../../assets/icons/coasterperson.svg";
 import riders from "../../assets/icons/coasterPeople.svg";
-
 import levi from "../../assets/images/hiclipart.com.png";
+
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const mic = new SpeechRecognition();
 
 class Search extends React.Component {
   constructor(props) {
@@ -21,7 +24,7 @@ class Search extends React.Component {
       message: "",
       credCount: null,
       topFavCoasterNames: null,
-      transcript: null,
+      isListening: false,
     };
   }
 
@@ -29,14 +32,6 @@ class Search extends React.Component {
     this.howMany();
     this.showFavourite();
   }
-
-  // componentDidUpdate() {
-  //   console.log(SpeechRecognition);
-  //   if (SpeechRecognition.startListening) {
-  //     // this.dictaphone();
-  //     console.log(SpeechRecognition.startListening.length);
-  //   }
-  // }
 
   fetchSearchResults = (e) => {
     e.preventDefault();
@@ -64,48 +59,34 @@ class Search extends React.Component {
     this.setState({ query });
   };
 
-  // dictaphone = (e) => {
-  //   e.preventDefault();
-  //   // const { transcript, _resetTranscript } = useSpeechRecognition();
-  //   console.log(transcript);
-
-  //   const {
-  //     transcript,
-  //     // interimTranscript,
-  //     finalTranscript,
-  //     // resetTranscript,
-  //     // listening,
-  //   } = useSpeechRecognition();
-
-  //   useEffect(() => {
-  //     if (finalTranscript !== "") {
-  //       console.log("Got final result:", finalTranscript);
-  //     }
-  //     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-  //       console.log(
-  //         "Your browser does not support speech recognition software! Try Chrome desktop"
-  //       );
-  //       return null;
-  //     }
-  //   });
-
-  //   const listenContinuously = () => {
-  //     SpeechRecognition.startListening({
-  //       continuous: true,
-  //       language: "en-GB",
-  //     });
-  //   };
-  // };
-
-  // dictaphone = (e) => {
-  //   // e.preventDefault();
-  //   const { transcript, _resetTranscript } = useSpeechRecognition();
-  //   // this.setState({ transcript });
-
-  //   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-  //     return null;
-  //   }
-  // };
+  handleListen = () => {
+    if (this.state.isListening) {
+      mic.start();
+      mic.onend = () => {
+        console.log("continue...");
+        mic.start();
+      };
+    } else {
+      mic.stop();
+      mic.onend = () => {
+        console.log("stopped mic");
+      };
+    }
+    mic.onstart = () => {
+      console.log("mic on");
+    };
+    mic.onresult = (e) => {
+      const transcript = Array.from(e.results)
+        .map((res) => res[0])
+        .map((res) => res.transcript.toLowerCase())
+        .join("");
+      // set state for your search here
+      this.setState({ query: transcript });
+      mic.onerror = (e) => {
+        console.log(e.error);
+      };
+    };
+  };
 
   addCredit = (e) => {
     e.preventDefault();
@@ -160,15 +141,8 @@ class Search extends React.Component {
   };
 
   render() {
-    const {
-      query,
-      results,
-      credCount,
-      topFavCoasterNames,
-      // transcript,
-    } = this.state;
-    console.log(this.props);
-    // const { transcript } = useSpeechRecognition();
+    const { query, results, credCount, topFavCoasterNames } = this.state;
+
     // Below formats new coaster favs to a new line
     let formatTop5 = [];
     if (topFavCoasterNames) {
@@ -220,18 +194,16 @@ class Search extends React.Component {
               placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
             />
-            {/* <p>{transcript}</p> */}
 
             <img
               className="coaster-credit__search-icon"
               src={magnify}
               alt="search"
-              // onClick={() => {
-              //   const storeSpeech = new SpeechRecognition();
-              //   storeSpeech.onresult = (e) => {
-              //     this.setState = e.target[0][0].transcript;
-              //   };
-              // }}
+              onClick={() => {
+                this.setState({ isListening: !this.state.isListening });
+                console.log(this.state.isListening);
+                this.handleListen();
+              }}
             />
           </label>
         </form>
