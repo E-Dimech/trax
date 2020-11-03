@@ -30,7 +30,7 @@ app.get("/search", function (req, res) {
       );
 
       res.send({
-        id: findCoaster.id,
+        // id: findCoaster.id,
         name: findCoaster.name,
         park: findCoaster.park.name,
         height: findCoaster.height,

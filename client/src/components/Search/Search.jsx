@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import firebase from "firebase";
+// import SpeechRecognition, {
+//   useSpeechRecognition,
+// } from "react-speech-recognition";
 import "./Search.scss";
 import magnify from "../../assets/icons/magnifier.svg";
 import coastie from "../../assets/icons/roller-coaster.svg";
@@ -18,6 +21,7 @@ class Search extends React.Component {
       message: "",
       credCount: null,
       topFavCoasterNames: null,
+      transcript: null,
     };
   }
 
@@ -25,6 +29,14 @@ class Search extends React.Component {
     this.howMany();
     this.showFavourite();
   }
+
+  // componentDidUpdate() {
+  //   console.log(SpeechRecognition);
+  //   if (SpeechRecognition.startListening) {
+  //     // this.dictaphone();
+  //     console.log(SpeechRecognition.startListening.length);
+  //   }
+  // }
 
   fetchSearchResults = (e) => {
     e.preventDefault();
@@ -47,9 +59,53 @@ class Search extends React.Component {
   };
 
   handleOnInputChange = (event) => {
+    // if statement to choose query type
     const query = event.target.value;
     this.setState({ query });
   };
+
+  // dictaphone = (e) => {
+  //   e.preventDefault();
+  //   // const { transcript, _resetTranscript } = useSpeechRecognition();
+  //   console.log(transcript);
+
+  //   const {
+  //     transcript,
+  //     // interimTranscript,
+  //     finalTranscript,
+  //     // resetTranscript,
+  //     // listening,
+  //   } = useSpeechRecognition();
+
+  //   useEffect(() => {
+  //     if (finalTranscript !== "") {
+  //       console.log("Got final result:", finalTranscript);
+  //     }
+  //     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+  //       console.log(
+  //         "Your browser does not support speech recognition software! Try Chrome desktop"
+  //       );
+  //       return null;
+  //     }
+  //   });
+
+  //   const listenContinuously = () => {
+  //     SpeechRecognition.startListening({
+  //       continuous: true,
+  //       language: "en-GB",
+  //     });
+  //   };
+  // };
+
+  // dictaphone = (e) => {
+  //   // e.preventDefault();
+  //   const { transcript, _resetTranscript } = useSpeechRecognition();
+  //   // this.setState({ transcript });
+
+  //   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+  //     return null;
+  //   }
+  // };
 
   addCredit = (e) => {
     e.preventDefault();
@@ -104,7 +160,15 @@ class Search extends React.Component {
   };
 
   render() {
-    const { query, results, credCount, topFavCoasterNames } = this.state;
+    const {
+      query,
+      results,
+      credCount,
+      topFavCoasterNames,
+      // transcript,
+    } = this.state;
+    console.log(this.props);
+    // const { transcript } = useSpeechRecognition();
     // Below formats new coaster favs to a new line
     let formatTop5 = [];
     if (topFavCoasterNames) {
@@ -156,10 +220,18 @@ class Search extends React.Component {
               placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
             />
+            {/* <p>{transcript}</p> */}
+
             <img
               className="coaster-credit__search-icon"
               src={magnify}
               alt="search"
+              // onClick={() => {
+              //   const storeSpeech = new SpeechRecognition();
+              //   storeSpeech.onresult = (e) => {
+              //     this.setState = e.target[0][0].transcript;
+              //   };
+              // }}
             />
           </label>
         </form>
