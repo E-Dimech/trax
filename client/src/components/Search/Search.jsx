@@ -80,12 +80,19 @@ class Search extends React.Component {
         .map((res) => res[0])
         .map((res) => res.transcript.toLowerCase())
         .join("");
-      // set state for your search here
+      // set state for search here
       this.setState({ query: transcript });
       mic.onerror = (e) => {
         console.log(e.error);
       };
     };
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      isListening: false,
+    });
   };
 
   addCredit = (e) => {
@@ -193,6 +200,10 @@ class Search extends React.Component {
               id="search-input"
               placeholder="Enter Coaster Name..."
               onChange={(e) => this.handleOnInputChange(e)}
+              onSubmit={() => {
+                // this.setState({ isListening: false });
+                this.handleSubmit();
+              }}
             />
 
             <img

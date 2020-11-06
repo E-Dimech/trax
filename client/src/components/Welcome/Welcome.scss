@@ -1,37 +1,122 @@
 @import "../../partials/global";
 
 .welcome-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
-  height: 900px;
-  background-color: #031c32;
-  @include tablet {
-    height: 1200px;
-  }
-  @include desktop {
-    height: 1400px;
-  }
+  height: auto;
+  overflow: hidden;
   &__image {
-    width: 80%;
-    max-width: 1000px;
-    max-height: 1000px;
+    width: 20%;
     position: absolute;
-    top: 25%;
-    left: 10%;
+    z-index: 10;
+    top: 5%;
+    left: 36%;
     border-radius: 20px;
     box-sizing: border-box;
-    border: 4px solid #b2375a;
+    border: 3px solid #b2375a;
     animation: shake 1.8s ease-out;
-    @include desktop {
-      height: 1400px;
-      top: 15%;
+    @include tablet {
+      left: 38%;
     }
+  }
+  &__sky {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  &__coaster-skyline1 {
+    position: absolute;
+    bottom: 32%;
+    left: -100%;
+    width: 100%;
+    animation: coaster-skyline1 30s infinite linear reverse;
+  }
+  &__coaster-skyline2 {
+    position: absolute;
+    bottom: 32%;
+    left: 0.5%;
+    width: 100%;
+    animation: coaster-skyline2 30s infinite linear reverse;
+  }
+  &__coaster-tracks1 {
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    width: 99%;
+    animation: coaster-track1 10s infinite linear reverse;
+  }
+  &__coaster-tracks2 {
+    position: absolute;
+    top: 5%;
+    left: -100%;
+    width: 99%;
+    animation: coaster-track2 10s infinite linear reverse;
+  }
+  &__coaster-train {
+    position: absolute;
+    top: 65%;
+    left: 30%;
+    width: 40%;
+  }
+  &__coaster-wheel1 {
+    position: absolute;
+    top: 86%;
+    left: 34%;
+    width: 7%;
+    animation: wheel 3s infinite linear;
+  }
+  &__coaster-wheel2 {
+    position: absolute;
+    top: 86%;
+    left: 56%;
+    width: 7%;
+    animation: wheel 3s infinite linear;
   }
 }
 .welcome-page__image:hover {
   transform: scale(1.1);
+}
+
+@keyframes coaster-track1 {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+@keyframes coaster-track2 {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes coaster-skyline1 {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0px;
+  }
+}
+@keyframes coaster-skyline2 {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes wheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shake {
