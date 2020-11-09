@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import firebase from "firebase";
-
+// import Home from "../Home/Home";
 import "./Search.scss";
 
+import microphone from "../../assets/icons/mic.svg";
 import magnify from "../../assets/icons/magnifier.svg";
 import coastie from "../../assets/icons/roller-coaster.svg";
 import rider from "../../assets/icons/coasterperson.svg";
@@ -157,6 +158,10 @@ class Search extends React.Component {
         formatTop5.push(coaster, <br key={index} />);
       });
     }
+    console.log(this.state.credCount);
+    // console.log(this.state.formatTop5);
+    console.log(this.state.topFavCoasterNames);
+
     return (
       <div className="coaster-credit">
         <h2 className="coaster-credit__heading">TRAX</h2>
@@ -186,7 +191,6 @@ class Search extends React.Component {
             alt="test"
           />
         </div>
-
         <form onSubmit={(e) => this.fetchSearchResults(e)}>
           <label
             className="coaster-credit__search-label"
@@ -205,11 +209,15 @@ class Search extends React.Component {
                 this.handleSubmit();
               }}
             />
-
             <img
               className="coaster-credit__search-icon"
               src={magnify}
               alt="search"
+            />
+            <img
+              className="coaster-credit__mic-icon"
+              src={microphone}
+              alt="microphone"
               onClick={() => {
                 this.setState({ isListening: !this.state.isListening });
                 console.log(this.state.isListening);
@@ -271,6 +279,7 @@ class Search extends React.Component {
           src={levi}
           alt="leviathan"
         />
+        {/* <Home credCount={this.state.credCount} /> */}
       </div>
     );
   }

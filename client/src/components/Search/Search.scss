@@ -77,10 +77,10 @@
     position: relative;
   }
   &__search-input {
-    width: 325px;
+    width: 355px;
     margin-top: 2%;
     margin-bottom: 5%;
-    padding: 12px;
+    padding: 12px 50px;
     font-family: $font-stack;
     color: #031c32;
     font-size: 20px;
@@ -89,12 +89,19 @@
     border-radius: 20px;
     border: 4px solid #031c32;
   }
+  &__mic-icon {
+    position: absolute;
+    top: -13px;
+    right: 10px;
+    color: #555;
+    width: 45px;
+  }
   &__search-icon {
     position: absolute;
-    top: -12px;
+    top: -8px;
+    left: 10px;
     color: #555;
-    right: 18px;
-    width: 45px;
+    width: 35px;
   }
   &__search-stats {
     display: flex;
@@ -172,6 +179,7 @@ a:hover {
 
 ::placeholder {
   font-family: $font-stack;
+  // padding: 50px;
 }
 
 @keyframes shake {

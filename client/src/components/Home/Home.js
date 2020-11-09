@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Maverick from "../../assets/images/maverick.png";
 import Boo from "../../assets/images/762a7944437539.58125ca053280.gif";
 import coastie from "../../assets/icons/roller-coaster.svg";
+
+// import Search from "../Search/Search.jsx";
 import "./Home.scss";
 
 class Home extends React.Component {
@@ -12,6 +14,7 @@ class Home extends React.Component {
   }
 
   render() {
+    // console.log(this.state.credCount);
     return (
       <div className="welcome">
         <h1 className="welcome__title">TRAX</h1>
@@ -21,7 +24,6 @@ class Home extends React.Component {
             <button className="welcome__add-credit">Add Credits</button>
           </Link>
         </div>
-
         <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" />
         <button className="welcome__logout-button" onClick={this.logout}>
           Logout
@@ -31,6 +33,7 @@ class Home extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
+        {/* <p>{this.props.credCount}</p> */}
       </div>
     );
   }
