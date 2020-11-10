@@ -4,23 +4,72 @@ import { Link } from "react-router-dom";
 import Maverick from "../../assets/images/maverick.png";
 import Boo from "../../assets/images/762a7944437539.58125ca053280.gif";
 import coastie from "../../assets/icons/roller-coaster.svg";
+import firebase from "firebase";
 
-// import Search from "../Search/Search.jsx";
 import "./Home.scss";
 
 class Home extends React.Component {
+  state = {
+    credCount: null,
+    topFavCoasterNames: null,
+  };
+
   logout() {
     fire.auth().signOut();
   }
 
+  componentDidMount() {
+    this.howMany(this.props.uid);
+    this.showFavourite(this.props.uid);
+  }
+
+  howMany = (uid) => {
+    firebase
+      .database()
+      .ref("users/" + uid)
+
+      .once("value")
+      .then((snapshot) => {
+        const credCount = snapshot.child("credit").numChildren();
+        this.setState({ credCount });
+      });
+  };
+
+  showFavourite = (uid) => {
+    firebase
+      .database()
+      .ref("users/" + uid)
+      .child("favourite")
+      .on("value", (snap) => {
+        if (snap.val()) {
+          let favList = Object.values(snap.val());
+          const topFavCoasterNames = favList.map((fav) => fav.top5);
+          this.setState({ topFavCoasterNames });
+        }
+      });
+  };
+
   render() {
-    // console.log(this.state.credCount);
+    const { topFavCoasterNames } = this.state;
+    let formatTop5 = [];
+    if (topFavCoasterNames) {
+      topFavCoasterNames.forEach((coaster, index) => {
+        formatTop5.push(coaster, <br key={index} />);
+      });
+    }
     return (
       <div className="welcome">
         <h1 className="welcome__title">TRAX</h1>
         <img className="welcome__image" src={Maverick} alt="trax" />
         <div className="welcome__link-container">
-          <Link to={{ pathname: "/Search", state: this.props }}>
+          <Link
+            to={{
+              pathname: "/Search",
+              state: {
+                uid: this.props.uid,
+              },
+            }}
+          >
             <button className="welcome__add-credit">Add Credits</button>
           </Link>
         </div>
@@ -33,7 +82,8 @@ class Home extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
-        {/* <p>{this.props.credCount}</p> */}
+        <p>{this.state.credCount}</p>
+        <p>{formatTop5}</p>
       </div>
     );
   }

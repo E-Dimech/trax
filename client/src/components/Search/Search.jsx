@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import firebase from "firebase";
-// import Home from "../Home/Home";
+
 import "./Search.scss";
 
 import microphone from "../../assets/icons/mic.svg";
@@ -30,6 +30,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.howMany();
     this.showFavourite();
   }
@@ -158,9 +159,6 @@ class Search extends React.Component {
         formatTop5.push(coaster, <br key={index} />);
       });
     }
-    console.log(this.state.credCount);
-    // console.log(this.state.formatTop5);
-    console.log(this.state.topFavCoasterNames);
 
     return (
       <div className="coaster-credit">
