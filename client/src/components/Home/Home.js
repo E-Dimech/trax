@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import Maverick from "../../assets/images/maverick.png";
 import Boo from "../../assets/images/762a7944437539.58125ca053280.gif";
 import coastie from "../../assets/icons/roller-coaster.svg";
+import loop from "../../assets/icons/clipart1941272.png";
+// import bubble from "../../assets/icons/clipart164273.png";
+import bubble from "../../assets/icons/clipart242612.png";
+
 import firebase from "firebase";
 
 import "./Home.scss";
@@ -60,7 +64,18 @@ class Home extends React.Component {
     return (
       <div className="welcome">
         <h1 className="welcome__title">TRAX</h1>
-        <img className="welcome__image" src={Maverick} alt="trax" />
+        <div className="welcome__img-container">
+          <img className="welcome__image" src={Maverick} alt="maverick" />
+          <img className="welcome__loop" src={loop} alt="coaster loop" />
+          <img
+            className="welcome__cred-bubble"
+            src={bubble}
+            alt="text bubble"
+          />
+          <p className="welcome__cred-bubble--text">CREDITS</p>
+          <p className="welcome__cred-bubble--creds">{this.state.credCount}</p>
+        </div>
+
         <div className="welcome__link-container">
           <Link
             to={{
@@ -73,17 +88,29 @@ class Home extends React.Component {
             <button className="welcome__add-credit">Add Credits</button>
           </Link>
         </div>
+
+        <div className="box">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div className="content">
+            <p className="welcome__fav-coasters-title">TOP COASTERS</p>
+            <p className="welcome__fav-coasters-list">{formatTop5}</p>
+          </div>
+        </div>
         <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" />
-        <button className="welcome__logout-button" onClick={this.logout}>
-          Logout
-        </button>
+        <div className="welcome__logout-container">
+          <button className="welcome__logout-button" onClick={this.logout}>
+            Logout
+          </button>
+        </div>
         <img
           className="welcome__bottom-coaster"
           src={coastie}
           alt="cartoon coaster"
         />
-        <p>{this.state.credCount}</p>
-        <p>{formatTop5}</p>
+        <div className="welcome__bottom-space"></div>
       </div>
     );
   }

@@ -9,7 +9,8 @@
   align-items: center;
 
   &__heading {
-    font-size: 80px;
+    // font-size: 80px;
+    font-size: 150px;
     margin: 0 auto;
     padding: 0 8px 0 0;
     color: #b2375a;
@@ -17,14 +18,14 @@
     font-family: $font-stack;
   }
   &__cartoon-image {
-    width: 20%;
+    width: 40%;
     margin: 0 auto;
     padding: 0;
   }
   &__title {
     margin: 0 auto;
     padding: 0;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     background: -webkit-linear-gradient(#eee, #b2375a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -33,14 +34,14 @@
   }
   &__credit-count {
     margin: 0 auto;
-    font-size: 3rem;
+    font-size: 5rem;
     color: #b2375a;
   }
   &__fav-title {
     text-align: center;
     margin-top: 0;
     margin-bottom: 2%;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     background: -webkit-linear-gradient(#eee, #b2375a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -48,7 +49,7 @@
   &__favourites {
     margin-top: 0;
     margin-bottom: 2%;
-    font-size: 2rem;
+    font-size: 3.5rem;
     text-align: center;
     color: #b2375a;
   }
@@ -57,7 +58,7 @@
     flex-direction: row;
   }
   &__coaster-peeps-single {
-    width: 60px;
+    width: 90px;
     margin-top: 0;
     animation: shake 1.5s cubic-bezier(0.26, 0.17, 0.39, 0.97) both;
     animation-iteration-count: infinite;
@@ -66,7 +67,7 @@
     perspective: 1000px;
   }
   &__coaster-peeps-double {
-    width: 90px;
+    width: 120px;
     animation: shake 2.82s cubic-bezier(0.66, 0.37, 0.59, 0.97) both;
     animation-iteration-count: infinite;
     transform: translate3d(0, 0, 0);

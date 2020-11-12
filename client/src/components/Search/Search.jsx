@@ -31,6 +31,7 @@ class Search extends React.Component {
 
   componentDidMount() {
     console.log(this.props);
+    window.scrollTo(0, 0);
     this.howMany();
     this.showFavourite();
   }
@@ -170,7 +171,7 @@ class Search extends React.Component {
         />
         <h2 className="coaster-credit__title">Total Coaster Credits</h2>
         <p className="coaster-credit__credit-count">{credCount}</p>
-        <h3 className="coaster-credit__fav-title">My Top 5 Coasters</h3>
+        <h3 className="coaster-credit__fav-title">Top Coasters</h3>
         <p className="coaster-credit__favourites">{formatTop5}</p>
         <div className="coaster-credit__coaster-peeps-container">
           <img
@@ -261,7 +262,7 @@ class Search extends React.Component {
                 onClick={this.addFavourite}
                 className="coaster-credit__search-stats-add-button"
               >
-                ADD TO TOP 5
+                ADD TO TOP COASTERS
               </button>
             </div>
           )
