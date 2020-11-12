@@ -197,6 +197,7 @@ class Search extends React.Component {
           >
             <input
               className="coaster-credit__search-input"
+              // autoComplete="off"
               name="query"
               type="text"
               value={query}
