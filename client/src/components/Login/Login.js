@@ -69,7 +69,7 @@ class Login extends React.Component {
               <label className="login-form__label">Email Address</label>
               <input
                 className="login-form__input"
-                autocomplete="off"
+                // autocomplete="off"
                 value={this.state.email}
                 onChange={this.handleChange}
                 id="email"

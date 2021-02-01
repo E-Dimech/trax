@@ -13,10 +13,12 @@
     max-width: 520px;
     min-height: 400px;
     display: flex;
+    // border: solid 4px white;
     flex-direction: column;
     justify-content: center;
     position: relative;
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+
     background: radial-gradient(
       ellipse at left bottom,
       rgba(22, 24, 47, 1) 0%,
@@ -51,6 +53,9 @@
     color: #fff;
     letter-spacing: 1px;
     border-radius: 5px;
+    &:focus {
+      border: solid 4px white;
+    }
   }
   &__button-container {
     width: 100%;

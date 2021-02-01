@@ -52,7 +52,7 @@ class Search extends React.Component {
       })
       // };
       .catch((error) => {
-        console.log("Where are all the coasters?");
+        console.log(error, "Where are all the coasters?");
       });
   };
 

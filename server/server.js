@@ -11,11 +11,12 @@ app.use((_req, res, next) => {
   next();
 });
 // api / config / packages / api_platform.yaml;
-api_platform: collection: pagination: enabled: false;
+// api_platform: collection: pagination: enabled: false;
 
 app.get("/search", function (req, res) {
+  // console.log(res, "this is req");
   axios
-    .get("https://captaincoaster.com/api/coasters", {
+    .get(`https://captaincoaster.com/api/coasters?name=${req.query.query}`, {
       headers: {
         "Content-Type": "application/json",
         "X-Auth-Token": "406e0870-3010-449c-bfd1-5e46460f0d4c",
@@ -23,7 +24,8 @@ app.get("/search", function (req, res) {
     })
     .then((coasters) => {
       const createArray = Object.values(coasters.data["hydra:member"]);
-      console.log(req.query.query);
+      // console.log(req.query.query);
+      // console.log(coasters);
       const findCoaster = createArray.find(
         (coasterObject) =>
           coasterObject.name.toLowerCase() === req.query.query.toLowerCase()
@@ -39,7 +41,7 @@ app.get("/search", function (req, res) {
           "https://captaincoaster.com/images/coasters/" +
           findCoaster.mainImage.path,
       });
-      console.log(findCoaster.mainImage.path);
+      // console.log(findCoaster.mainImage.path);
     })
     .catch((err) => console.log(err));
 });
