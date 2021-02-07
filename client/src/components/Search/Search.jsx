@@ -38,7 +38,7 @@ class Search extends React.Component {
 
   fetchSearchResults = (e) => {
     e.preventDefault();
-    const testUrl = "http://localhost:8080/search";
+    const testUrl = "/search";
 
     axios
       .get(testUrl, {
