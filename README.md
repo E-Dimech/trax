@@ -1,34 +1,5 @@
 # trax
 
-Due to the current limitations to the captain coaster api, only the following coasters can be accessed :
-
-gourdurix
-dream catcher 
-alucinakis
-anaconda
-azteka
-bat coaster
-batman: Arkham asylum
-big thunder mountain
-eqwualizer
-calamity mine
-casey jr, le petit train du cirque
-cobra
-coccinelle
-coleoz’arbres
-comet
-bobsleigh
-cumbres
-le dragon de bei hai
-euro mir
-eurosat
-expedition geforce
-le grand canyon
-indiana jones et le temple du peril
-jaguar
-cop car chase (1)
-loup garou
-magnus colossus
-oki doki
-sos numerobis
-poseidon
+My capstone project during my time as a student at BrainStation.
+Trax ia a web application designed and tested for roller coaster enthusiasts. 
+With access to an API holding data on every coaster on the planet, users can log the individual coasters they have ridden on their travels around the globe. Integrating a user-friendly experience with features such as speech to text translator, custom-built animation graphics, and an attractive layout and design pattern. My goal is to continue developing this passion project and in the future deploying it to the iOS App Store.
