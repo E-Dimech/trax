@@ -1,0 +1,29 @@
+{
+  "name": "trax",
+  "version": "1.0.0",
+  "description": "trax",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^7.24.0",
+    "prop-types": "^15.7.2",
+    "react-router-dom": "^5.2.0",
+    "react-speech-recognition": "^3.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/E-Dimech/trax.git"
+  },
+  "keywords": [
+    "rollercoasters"
+  ],
+  "author": "Eric Dimech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/E-Dimech/trax/issues"
+  },
+  "homepage": "https://github.com/E-Dimech/trax#readme"
+}
