@@ -12,10 +12,10 @@
   "devDependencies": {},
   "scripts": {
     "client": "npm start --prefix client",
-    "start": "node server/server.js",
-    "server": "node server/server.js",
+    "start": "npm start --prefix server",
+    "server": "node server --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm install --prefix server && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm install --prefix server && npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
