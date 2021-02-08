@@ -30,7 +30,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     window.scrollTo(0, 0);
     this.howMany();
     this.showFavourite();
