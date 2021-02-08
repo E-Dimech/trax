@@ -20,7 +20,7 @@ app.get("*", (request, response) => {
   response.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
-app.get("api/search", function (req, res) {
+app.get("/api/search", function (req, res) {
   console.log(req, "this is req");
   axios
     .get(`https://captaincoaster.com/api/coasters?name=${req.query.query}`, {
