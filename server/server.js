@@ -16,10 +16,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("../client/build"));
 }
 
-app.get("*", (request, response) => {
-  response.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
-
 app.get("/api/search", function (req, res) {
   console.log(req, "this is req");
   axios
@@ -50,6 +46,10 @@ app.get("/api/search", function (req, res) {
       // console.log(findCoaster.mainImage.path);
     })
     .catch((err) => console.log(err));
+});
+
+app.get("*", (request, response) => {
+  response.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
