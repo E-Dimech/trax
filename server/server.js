@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const port = process.env.PORT || 8080;
+const path = require("path");
 
 app.use(bodyParser());
 
@@ -20,7 +21,7 @@ app.get("*", (request, response) => {
 });
 
 app.get("/search", function (req, res) {
-  // console.log(res, "this is req");
+  console.log(req, "this is req");
   axios
     .get(`https://captaincoaster.com/api/coasters?name=${req.query.query}`, {
       headers: {
@@ -31,7 +32,6 @@ app.get("/search", function (req, res) {
     .then((coasters) => {
       const createArray = Object.values(coasters.data["hydra:member"]);
       // console.log(req.query.query);
-      // console.log(coasters);
       const findCoaster = createArray.find(
         (coasterObject) =>
           coasterObject.name.toLowerCase() === req.query.query.toLowerCase()
