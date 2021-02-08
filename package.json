@@ -12,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "client": "npm start --prefix client",
-    "start": "node server/server.js",
+    "start": "cd .. && node server/server.js",
     "server": "node server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "setup": "cd server && npm i",
