@@ -10,8 +10,14 @@ app.use((_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
-// api / config / packages / api_platform.yaml;
-// api_platform: collection: pagination: enabled: false;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+
+app.get("*", (request, response) => {
+  response.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
 
 app.get("/search", function (req, res) {
   // console.log(res, "this is req");
