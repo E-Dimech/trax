@@ -11,8 +11,7 @@ import rider from "../../assets/icons/coasterperson.svg";
 import riders from "../../assets/icons/coasterPeople.svg";
 import levi from "../../assets/images/hiclipart.com.png";
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechRecognition = window.webkitSpeechRecognition;
 
 const mic = new SpeechRecognition();
 
