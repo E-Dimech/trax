@@ -64,20 +64,27 @@ class Home extends React.Component {
     return (
       <div className="welcome">
         <h1 className="welcome__title">TRAX</h1>
-        <div className="welcome__img-container">
-          <img className="welcome__image" src={Maverick} alt="maverick" />
+        <div className="welcome__section-container">
+          <div className="welcome__img-container">
+            <img className="welcome__image" src={Maverick} alt="maverick" />
+          </div>
           {/* <img className="welcome__loop" src={loop} alt="coaster loop" /> */}
-          <img
-            className="welcome__cred-bubble"
-            src={bubble}
-            alt="text bubble"
-          />
-          <p className="welcome__cred-bubble--text">CREDITS</p>
-          <p className="welcome__cred-bubble--creds">{this.state.credCount}</p>
+          <div className="welcome__bubble-container">
+            <img
+              className="welcome__cred-bubble"
+              src={bubble}
+              alt="text bubble"
+            />
+            <p className="welcome__cred-bubble--text">CREDITS</p>
+            <p className="welcome__cred-bubble--creds">
+              {this.state.credCount}
+            </p>
+          </div>
         </div>
 
         <div className="welcome__link-container">
           <Link
+            className="welcome__link"
             to={{
               pathname: "/Search",
               state: {

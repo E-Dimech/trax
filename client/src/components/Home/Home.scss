@@ -19,52 +19,79 @@
       animation: neon1 3.5s ease-in-out infinite alternate;
     }
   }
+  &__section-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
   &__img-container {
-    flex-wrap: wrap;
-    position: relative;
+    width: 50%;
+    margin-left: 5%;
+    // flex: 1;
+    @include tablet {
+      margin-left: 2%;
+    }
   }
   &__image {
-    margin-left: 5%;
-    width: 50%;
+    // margin-left: 5%;
+    width: 100%;
     box-sizing: border-box;
     border-radius: 20px;
     border: solid 4px #b2375a;
   }
-  &__loop {
-    width: 35%;
-    margin-left: 5%;
-    position: relative;
-    z-index: 100;
-  }
+  // &__loop {
+  //   width: 35%;
+  //   margin-left: 5%;
+  //   position: relative;
+  //   z-index: 100;
+  // }
   &__cred-bubble {
-    width: 55%;
-    position: absolute;
-    top: -10%;
-    left: 48%;
-    overflow: hidden;
+    width: 100%;
+    // margin-bottom: 0;
+    // position: absolute;
+    // top: -10%;
+    // left: 48%;
+    // overflow: hidden;
+  }
+  &__bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // height: 300px;
+    // float: right;
+    width: 50%;
+    margin-right: 1%;
+    // justify-content: center;
+    // margin-top: 1000px;
   }
   &__cred-bubble--text {
+    margin-top: 12%;
     position: absolute;
-    top: 13%;
-    left: 69%;
+    // top: 13%;
+    // left: 69%;
+    // z-index: 16;
     font-size: 3vw;
     font-weight: bold;
     color: #1d2968;
   }
   &__cred-bubble--creds {
-    position: absolute;
-    top: 25%;
-    right: 12%;
+    // width: 50%;
+    // position: absolute;
+    // top: 25%;
+    // right: 25%;
+    // justify-content: center;
+    margin: 0;
     font-size: 12vw;
     font-weight: bold;
     color: #b2375a;
   }
   &__add-credit {
     color: white;
-    position: absolute;
+    // position: absolute;
     font-weight: bold;
-    bottom: -25px;
-    left: 25%;
+    // bottom: -25px;
+    // left: 25%;
     font-size: 16px;
     border: none;
     outline: none;
@@ -80,12 +107,20 @@
     z-index: 1000;
   }
   &__link-container {
-    position: relative;
+    // margin-top: 1%;
+    // position: absolute;
+
     box-sizing: border-box;
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin-top: 10%;
     justify-content: center;
+    @include desktop {
+      margin-top: 5%;
+    }
+  }
+  &__link {
+    margin: 0;
   }
   &__fav-coasters-title {
     font-weight: bold;

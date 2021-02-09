@@ -30,6 +30,7 @@ a {
   // overflow: hidden;
   &__image {
     width: 55%;
+    max-height: 250px;
 
     // position: absolute;
     // z-index: 10;
@@ -42,6 +43,12 @@ a {
     // @include tablet {
     //   left: 38%;
     // }
+    @include tablet {
+      max-height: 300px;
+    }
+    @include tablet {
+      max-height: 500px;
+    }
   }
   &__sky {
     padding: 0;
