@@ -96,16 +96,18 @@ class Home extends React.Component {
           </Link>
         </div>
         <div className="btm-container">
-          <div className="box">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <div className="content">
-              <p className="welcome__fav-coasters-title">TOP COASTERS</p>
-              <p className="welcome__fav-coasters-list">{formatTop5}</p>
+          {this.state.topFavCoasterNames != null && (
+            <div className="box">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <div className="content">
+                <p className="welcome__fav-coasters-title">TOP COASTERS</p>
+                <p className="welcome__fav-coasters-list">{formatTop5}</p>
+              </div>
             </div>
-          </div>
+          )}
           {/* <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" /> */}
           <img
             className="welcome__bottom-coaster"

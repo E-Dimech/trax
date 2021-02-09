@@ -36,6 +36,10 @@ class Search extends React.Component {
     this.showFavourite();
   }
 
+  componentWillUpdate() {
+    console.log(this.state.credCount);
+  }
+
   fetchSearchResults = (e) => {
     e.preventDefault();
     const testUrl = "/api/search";
@@ -169,10 +173,18 @@ class Search extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
-        <h2 className="coaster-credit__title">Coaster Credits</h2>
-        <p className="coaster-credit__credit-count">{credCount}</p>
-        <h3 className="coaster-credit__fav-title">Top Coasters</h3>
-        <p className="coaster-credit__favourites">{formatTop5}</p>
+        {this.state.credCount != null && (
+          <>
+            <h2 className="coaster-credit__title">Coaster Credits</h2>
+            <p className="coaster-credit__credit-count">{credCount}</p>
+          </>
+        )}
+        {this.state.topFavCoasterNames != null && (
+          <>
+            <h3 className="coaster-credit__fav-title">Top Coasters</h3>
+            <p className="coaster-credit__favourites">{formatTop5}</p>
+          </>
+        )}
         <div className="coaster-credit__coaster-peeps-container">
           <img
             className="coaster-credit__coaster-peeps-single"

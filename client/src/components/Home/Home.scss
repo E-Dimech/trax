@@ -244,10 +244,10 @@
   pointer-events: none;
 }
 
-.box:hover:before {
-  left: -30%;
-  transform: skewX(-5deg);
-}
+// .box:hover:before {
+//   left: -30%;
+//   transform: skewX(-5deg);
+// }
 
 .box .content {
   position: absolute;
