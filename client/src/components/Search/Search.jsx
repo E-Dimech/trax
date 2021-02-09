@@ -169,7 +169,7 @@ class Search extends React.Component {
           src={coastie}
           alt="cartoon coaster"
         />
-        <h2 className="coaster-credit__title">Total Coaster Credits</h2>
+        <h2 className="coaster-credit__title">Coaster Credits</h2>
         <p className="coaster-credit__credit-count">{credCount}</p>
         <h3 className="coaster-credit__fav-title">Top Coasters</h3>
         <p className="coaster-credit__favourites">{formatTop5}</p>
