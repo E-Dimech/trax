@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Trax from "../../assets/images/traxLogo.png";
-import Sky from "../../assets/animation/Nature landscape background.jpg";
-import Coaster from "../../assets/animation/coastertrax.png";
-import Tracks from "../../assets/animation/tracks.svg";
-import Train from "../../assets/animation/coasterTrain.png";
-import Wheel from "../../assets/animation/wheel.png";
+// import Sky from "../../assets/animation/Nature landscape background.jpg";
+// import Coaster from "../../assets/animation/coastertrax.png";
+// import Tracks from "../../assets/animation/tracks.svg";
+// import Train from "../../assets/animation/coasterTrain.png";
+// import Wheel from "../../assets/animation/wheel.png";
 import "./Welcome.scss";
 
 function Welcome() {
@@ -16,7 +16,7 @@ function Welcome() {
           <img className="welcome-page__image" src={Trax} alt="trax" />
         </Link>
       </>
-      <img className="welcome-page__sky" src={Sky} alt="night sky" />
+      {/* <img className="welcome-page__sky" src={Sky} alt="night sky" />
       <img
         className="welcome-page__coaster-skyline1"
         src={Coaster}
@@ -51,7 +51,7 @@ function Welcome() {
         className="welcome-page__coaster-wheel2"
         src={Wheel}
         alt="coaster wheel"
-      />
+      /> */}
     </div>
   );
 }

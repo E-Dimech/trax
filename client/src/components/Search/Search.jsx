@@ -11,10 +11,10 @@ import rider from "../../assets/icons/coasterperson.svg";
 import riders from "../../assets/icons/coasterPeople.svg";
 import levi from "../../assets/images/hiclipart.com.png";
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+// const SpeechRecognition =
+//   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const mic = new SpeechRecognition();
+// const mic = new SpeechRecognition();
 
 class Search extends React.Component {
   constructor(props) {
@@ -62,34 +62,34 @@ class Search extends React.Component {
     this.setState({ query });
   };
 
-  handleListen = () => {
-    if (this.state.isListening) {
-      mic.start();
-      mic.onend = () => {
-        console.log("continue...");
-        mic.start();
-      };
-    } else {
-      mic.stop();
-      mic.onend = () => {
-        console.log("stopped mic");
-      };
-    }
-    mic.onstart = () => {
-      console.log("mic on");
-    };
-    mic.onresult = (e) => {
-      const transcript = Array.from(e.results)
-        .map((res) => res[0])
-        .map((res) => res.transcript.toLowerCase())
-        .join("");
-      // set state for search here
-      this.setState({ query: transcript });
-      mic.onerror = (e) => {
-        console.log(e.error);
-      };
-    };
-  };
+  // handleListen = () => {
+  //   if (this.state.isListening) {
+  //     mic.start();
+  //     mic.onend = () => {
+  //       console.log("continue...");
+  //       mic.start();
+  //     };
+  //   } else {
+  //     mic.stop();
+  //     mic.onend = () => {
+  //       console.log("stopped mic");
+  //     };
+  //   }
+  //   mic.onstart = () => {
+  //     console.log("mic on");
+  //   };
+  //   mic.onresult = (e) => {
+  //     const transcript = Array.from(e.results)
+  //       .map((res) => res[0])
+  //       .map((res) => res.transcript.toLowerCase())
+  //       .join("");
+  //     // set state for search here
+  //     this.setState({ query: transcript });
+  //     mic.onerror = (e) => {
+  //       console.log(e.error);
+  //     };
+  //   };
+  // };
 
   handleSubmit = (event) => {
     event.preventDefault();

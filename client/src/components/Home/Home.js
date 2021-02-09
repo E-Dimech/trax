@@ -2,9 +2,9 @@ import React from "react";
 import fire from "../../config/fire";
 import { Link } from "react-router-dom";
 import Maverick from "../../assets/images/maverick.png";
-import Boo from "../../assets/images/762a7944437539.58125ca053280.gif";
+// import Boo from "../../assets/images/762a7944437539.58125ca053280.gif";
 import coastie from "../../assets/icons/roller-coaster.svg";
-import loop from "../../assets/icons/clipart1941272.png";
+// import loop from "../../assets/icons/clipart1941272.png";
 // import bubble from "../../assets/icons/clipart164273.png";
 import bubble from "../../assets/icons/clipart242612.png";
 
@@ -66,7 +66,7 @@ class Home extends React.Component {
         <h1 className="welcome__title">TRAX</h1>
         <div className="welcome__img-container">
           <img className="welcome__image" src={Maverick} alt="maverick" />
-          <img className="welcome__loop" src={loop} alt="coaster loop" />
+          {/* <img className="welcome__loop" src={loop} alt="coaster loop" /> */}
           <img
             className="welcome__cred-bubble"
             src={bubble}
@@ -88,28 +88,30 @@ class Home extends React.Component {
             <button className="welcome__add-credit">Add Credits</button>
           </Link>
         </div>
-
-        <div className="box">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div className="content">
-            <p className="welcome__fav-coasters-title">TOP COASTERS</p>
-            <p className="welcome__fav-coasters-list">{formatTop5}</p>
+        <div className="btm-container">
+          <div className="box">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div className="content">
+              <p className="welcome__fav-coasters-title">TOP COASTERS</p>
+              <p className="welcome__fav-coasters-list">{formatTop5}</p>
+            </div>
           </div>
+          {/* <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" /> */}
+          <img
+            className="welcome__bottom-coaster"
+            src={coastie}
+            alt="cartoon coaster"
+          />
         </div>
-        <img className="welcome__bottom-image" src={Boo} alt="Ghost Rider" />
         <div className="welcome__logout-container">
           <button className="welcome__logout-button" onClick={this.logout}>
             Logout
           </button>
         </div>
-        <img
-          className="welcome__bottom-coaster"
-          src={coastie}
-          alt="cartoon coaster"
-        />
+
         <div className="welcome__bottom-space"></div>
       </div>
     );

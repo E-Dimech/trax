@@ -53,8 +53,8 @@
   }
   &__cred-bubble--creds {
     position: absolute;
-    top: 20%;
-    left: 72%;
+    top: 25%;
+    right: 12%;
     font-size: 12vw;
     font-weight: bold;
     color: #b2375a;
@@ -64,11 +64,11 @@
     position: absolute;
     font-weight: bold;
     bottom: -25px;
-    left: 27.5%;
+    left: 25%;
     font-size: 16px;
     border: none;
     outline: none;
-    width: 45%;
+    width: 50%;
     padding: 15px 0;
     color: honeydew;
     font-family: $font-stack;
@@ -101,7 +101,10 @@
     font-size: 3.5vw;
     width: 100%;
     margin-top: 0;
-    line-height: 75px;
+    line-height: 55px;
+    @include tablet {
+      line-height: 75px;
+    }
   }
   &__bottom-image {
     width: 30%;
@@ -118,15 +121,15 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0;
-    margin-top: 23%;
+    margin-top: 10%;
     // margin-right: 27%;
-    justify-content: flex-end;
+    justify-content: center;
   }
   &__logout-button {
     border: none;
     outline: none;
-    width: 35%;
-    margin-right: 2.5%;
+    width: 55%;
+    // margin-right: 2.5%;
     padding: 15px 0;
     color: honeydew;
     font-family: $font-stack;
@@ -139,22 +142,41 @@
     z-index: 100;
   }
   &__bottom-coaster {
-    width: 35%;
+    width: 50%;
     // height: 900px;
-    align-self: flex-end;
-    margin-top: -34%;
-    margin-right: 2.5%;
+    align-self: center;
+    // margin-top: -34%;
+    // margin-right: 2.5%;
+    @include tablet {
+      width: 40%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+    @include desktop {
+      width: 35%;
+      align-self: center;
+      // margin-top: -64%;
+      // margin-right: 2.5%;
+    }
   }
   &__bottom-space {
     height: 100px;
   }
 }
+.btm-container {
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
 
 .box {
-  margin-top: 15%;
+  margin-top: 35%;
   transform: translate(0.5%, -10%);
-  width: 600px;
-  height: 600px;
+  width: 90%;
+  height: 400px;
   background: #111845a6;
   box-sizing: border-box;
   overflow: hidden;
@@ -163,6 +185,16 @@
   color: white;
   padding: 20px;
   margin-left: 5%;
+  @include tablet {
+    width: 600px;
+    height: 600px;
+    margin-top: 25%;
+    // margin-left: 10%;
+  }
+  @include desktop {
+    margin-top: 10%;
+    height: 750px;
+  }
 }
 
 .box:before {
