@@ -92,7 +92,7 @@
     font-weight: bold;
     // bottom: -25px;
     // left: 25%;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     outline: none;
     width: 50%;
@@ -107,12 +107,16 @@
     z-index: 1000;
     @include tablet {
       padding: 15px 0;
+      font-size: 1.5rem;
+    }
+    @include desktop {
+      padding: 15px 0;
+      font-size: 2rem;
     }
   }
   &__link-container {
     // margin-top: 1%;
     // position: absolute;
-
     box-sizing: border-box;
     width: 100%;
     padding: 0;
@@ -125,6 +129,8 @@
   &__link {
     margin: 0;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
   }
   &__fav-coasters-title {
     font-weight: bold;
@@ -172,7 +178,7 @@
     padding: 5px 0;
     color: honeydew;
     font-family: $font-stack;
-    font-size: 18px;
+    font-size: 1rem;
     letter-spacing: 1px;
     background: #031c32;
     border: 3px solid #b2375a;
@@ -181,6 +187,11 @@
     z-index: 100;
     @include tablet {
       padding: 15px 0;
+      font-size: 1.5rem;
+    }
+    @include desktop {
+      padding: 15px 0;
+      font-size: 2rem;
     }
   }
   &__bottom-coaster {

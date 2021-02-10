@@ -1,24 +1,10 @@
 @import "../../partials/global";
-a {
-  margin-top: 50%;
-  display: flex;
-  justify-content: center;
-  // align-self: flex-end;
-  // align-items: flex-end;
-  // align-content: flex-end;
-  @include tablet {
-    margin-top: 40%;
-  }
-  @include desktop {
-    margin-top: 10%;
-  }
-}
 
 .welcome-page {
-  // position: relative;
+  position: relative;
   // height: 100%;
   width: 100%;
-  height: 1000px;
+  // height: 1000px;
   // display: flex;
   // justify-content: center;
   // align-self: center;
@@ -27,10 +13,26 @@ a {
 
   // object-fit: fill;
   // object-fit: contain;
-  // overflow: hidden;
-  &__image {
+  overflow: hidden;
+  &__link {
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    // align-self: flex-end;
+    // align-items: flex-end;
+    // align-content: flex-end;
+    @include tablet {
+      margin-top: 10%;
+      margin-bottom: 8%;
+    }
+    @include desktop {
+      margin-top: 10%;
+    }
+  }
+  &__link-image {
     width: 55%;
-    max-height: 220px;
+    max-height: 250px;
+    max-width: 240px;
 
     // position: absolute;
     // z-index: 10;
@@ -44,7 +46,8 @@ a {
     //   left: 38%;
     // }
     @include tablet {
-      max-height: 270px;
+      max-height: 300px;
+      max-width: 100px;
     }
     @include tablet {
       max-height: 500px;
