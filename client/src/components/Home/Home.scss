@@ -38,7 +38,7 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: 20px;
-    border: solid 4px #b2375a;
+    border: solid 3px #b2375a;
   }
   // &__loop {
   //   width: 35%;
@@ -96,15 +96,18 @@
     border: none;
     outline: none;
     width: 50%;
-    padding: 15px 0;
+    padding: 5px 0;
     color: honeydew;
     font-family: $font-stack;
     letter-spacing: 1px;
     background: #031c32;
-    border: 4px solid #b2375a;
+    border: 3px solid #b2375a;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 1000;
+    @include tablet {
+      padding: 15px 0;
+    }
   }
   &__link-container {
     // margin-top: 1%;
@@ -113,7 +116,7 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0;
-    margin-top: 10%;
+    margin-top: 3%;
     justify-content: center;
     @include desktop {
       margin-top: 5%;
@@ -121,6 +124,7 @@
   }
   &__link {
     margin: 0;
+    text-decoration: none;
   }
   &__fav-coasters-title {
     font-weight: bold;
@@ -141,40 +145,43 @@
       line-height: 75px;
     }
   }
-  &__bottom-image {
-    width: 30%;
-    margin-top: -57.5%;
-    margin-right: 5%;
-    align-self: flex-end;
-    border-radius: 20px;
-    box-sizing: border-box;
-    border: solid 4px #b2375a;
-    // float: right;
-  }
+  // &__bottom-image {
+  //   width: 30%;
+  //   margin-top: -7.5%;
+  //   margin-right: 5%;
+  //   align-self: flex-end;
+  //   border-radius: 20px;
+  //   box-sizing: border-box;
+  //   border: solid 4px #b2375a;
+  //   // float: right;
+  // }
   &__logout-container {
     display: flex;
     box-sizing: border-box;
     width: 100%;
     padding: 0;
-    margin-top: 10%;
+    margin: 0;
     // margin-right: 27%;
     justify-content: center;
   }
   &__logout-button {
     border: none;
     outline: none;
-    width: 55%;
+    width: 50%;
     // margin-right: 2.5%;
-    padding: 15px 0;
+    padding: 5px 0;
     color: honeydew;
     font-family: $font-stack;
     font-size: 18px;
     letter-spacing: 1px;
     background: #031c32;
-    border: 4px solid #b2375a;
+    border: 3px solid #b2375a;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 100;
+    @include tablet {
+      padding: 15px 0;
+    }
   }
   &__bottom-coaster {
     width: 50%;
@@ -201,14 +208,16 @@
 .btm-container {
   display: flex;
   flex-direction: column;
+  margin-top: 1%;
   @include tablet {
+    // margin-top: 1%;
     flex-direction: row;
     justify-content: space-evenly;
   }
 }
 
 .box {
-  margin-top: 35%;
+  margin-top: 15%;
   transform: translate(0.5%, -10%);
   width: 90%;
   height: 400px;
@@ -223,7 +232,7 @@
   @include tablet {
     width: 600px;
     height: 600px;
-    margin-top: 25%;
+    margin-top: 10%;
     // margin-left: 10%;
   }
   @include desktop {
